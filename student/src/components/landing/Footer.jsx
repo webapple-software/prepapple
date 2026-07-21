@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import { Mail } from 'lucide-react';
+import { Mail, Phone } from 'lucide-react';
 
 const Footer = () => {
   return (
@@ -11,7 +11,7 @@ const Footer = () => {
           {/* Column 1: Brand */}
           <div className="col-span-1 md:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-6">
-              <img src="/assets/logo.jpeg" alt="PrepApple Logo" className="h-14 w-auto object-contain mix-blend-multiply" />
+              <img src="/assets/logo-prepapple.png" alt="PrepApple Logo" className="h-14 w-auto object-contain rounded-2xl mix-blend-multiply" onError={(e) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }} />
               <span className="font-heading font-extrabold text-3xl tracking-tight text-[#0B1F4D]">
                 Prep<span className="text-[#1E88E5]">Apple</span>
               </span>
@@ -61,6 +61,10 @@ const Footer = () => {
               <li className="flex items-center gap-2 mt-4 text-slate-700">
                 <Mail className="w-4 h-4 text-blue-600 flex-shrink-0" />
                 <a href="mailto:prepapple.edu@gmail.com" className="hover:text-blue-600 font-semibold transition-colors">prepapple.edu@gmail.com</a>
+              </li>
+              <li className="flex items-center gap-2 mt-2 text-slate-700">
+                <Phone className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <a href="tel:+919721197107" className="hover:text-blue-600 font-semibold transition-colors">+91 97211 97107</a>
               </li>
             </ul>
           </div>

@@ -68,7 +68,7 @@ export default function Login({ role = 'student' }: { role?: 'student' | 'admin'
           <img 
             src="/assets/logo-prepapple.png" 
             alt="PrepApple Logo" 
-            className="h-16 w-auto object-contain mb-3 drop-shadow-sm"
+            className="h-16 w-auto object-contain mb-3 rounded-2xl shadow-sm"
             onError={(e: any) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }}
           />
           <h2 className="text-2xl font-black text-slate-800 uppercase tracking-wider flex items-center gap-1">
@@ -154,14 +154,9 @@ export default function Login({ role = 'student' }: { role?: 'student' | 'admin'
 
         {/* Portal Switching Links */}
         <div className="mt-6 pt-5 border-t border-slate-200/80 flex flex-col gap-2 text-center">
-          {role !== 'student' && (
+          {role === 'admin' && (
             <Link to="/login/student" className="text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-wider">
               Are you a Student? Go to Student Portal
-            </Link>
-          )}
-          {role !== 'admin' && (
-            <Link to="/login/admin" className="text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-wider">
-              Are you an Admin? Go to Admin Portal
             </Link>
           )}
           <Link to="/" className="text-[11px] font-bold text-slate-400 hover:text-slate-600 transition-colors mt-1 uppercase tracking-wider">

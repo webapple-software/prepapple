@@ -1036,7 +1036,7 @@ export default function TeacherDashboard({ isEmbedded = false }: { isEmbedded?: 
             <img 
               src="/assets/logo-prepapple.png" 
               alt="PrepApple Logo" 
-              className="h-10 w-auto object-contain"
+              className="h-10 w-auto object-contain rounded-2xl shadow-sm"
               onError={(e: any) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }}
             />
             <div>

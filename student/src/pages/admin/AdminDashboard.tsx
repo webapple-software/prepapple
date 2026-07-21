@@ -851,7 +851,7 @@ export default function AdminDashboard() {
                 src="/assets/logo-prepapple.png" 
                 alt="PrepApple Logo" 
                 onClick={() => isSidebarCollapsed && setIsSidebarCollapsed(false)}
-                className={`h-9 w-auto object-contain flex-shrink-0 bg-white/10 p-1 rounded-xl border border-white/10 ${isSidebarCollapsed ? 'cursor-pointer hover:bg-white/20' : ''}`}
+                className={`h-9 w-auto object-contain flex-shrink-0 bg-white/10 p-1 rounded-2xl border border-white/10 ${isSidebarCollapsed ? 'cursor-pointer hover:bg-white/20' : ''}`}
                 title={isSidebarCollapsed ? "Expand Sidebar" : undefined}
                 onError={(e: any) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }}
               />

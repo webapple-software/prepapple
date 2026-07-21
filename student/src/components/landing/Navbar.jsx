@@ -8,7 +8,7 @@ const Navbar = () => {
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
           <Link to="/" className="flex items-center gap-3">
-            <img src="/assets/logo.jpeg" alt="PrepApple Logo" className="h-12 w-auto mix-blend-multiply" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/50x50?text=Logo"; }} />
+            <img src="/assets/logo-prepapple.png" alt="PrepApple Logo" className="h-12 w-auto object-contain rounded-2xl mix-blend-multiply" onError={(e) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }} />
             <div className="flex flex-col">
               <span className="font-heading font-extrabold text-2xl text-[#0B1F4D] leading-none">
                 Prep<span className="text-[#1E88E5]">Apple</span>
