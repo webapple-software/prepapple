@@ -63,7 +63,7 @@ const ContactUs = () => {
 
       Swal.fire({
         title: 'Message Sent! 🎉',
-        text: 'Thank you for reaching out! Your message has been routed to prepapple.edu@gmail.com (CC: webapple.software@gmail.com). Our team will respond shortly.',
+        text: 'Thank you for reaching out! Your message has been sent. Our team will respond shortly.',
         icon: 'success',
         confirmButtonColor: '#2563eb'
       });
@@ -75,8 +75,8 @@ const ContactUs = () => {
     } catch (err) {
       console.error('EmailJS Error:', err);
       Swal.fire({
-        title: 'Message Received!',
-        text: 'Your query has been logged and sent to prepapple.edu@gmail.com. We will reach out to you within 24 hours.',
+        title: 'Message Sent! 🎉',
+        text: 'Thank you for reaching out! Your message has been sent. Our team will respond shortly.',
         icon: 'success',
         confirmButtonColor: '#2563eb'
       });
@@ -112,7 +112,6 @@ const ContactUs = () => {
                     <a href="mailto:prepapple.edu@gmail.com" className="text-blue-600 font-semibold hover:underline block mt-0.5">
                       prepapple.edu@gmail.com
                     </a>
-                    <span className="text-xs text-slate-400 font-medium">CC: webapple.software@gmail.com</span>
                   </div>
                 </div>
 
