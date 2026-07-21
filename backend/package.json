@@ -1,0 +1,24 @@
+{
+  "name": "prepapple-backend",
+  "version": "1.0.0",
+  "description": "Backend for webapple Mock Test Portal",
+  "main": "src/index.js",
+  "scripts": {
+    "start": "node src/index.js",
+    "dev": "nodemon src/index.js"
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.5",
+    "express": "^4.19.2",
+    "firebase": "^12.16.0",
+    "multer": "^2.1.1",
+    "pdf-parse": "^2.4.5",
+    "prepapple": "file:..",
+    "webapple-mock-test-portal": "file:..",
+    "xlsx": "^0.18.5"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.0"
+  }
+}

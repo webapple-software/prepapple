@@ -1,0 +1,14 @@
+{
+  "name": "prepapple",
+  "version": "1.0.0",
+  "description": "PrepApple – 3-Panel CBT Mock Test Platform",
+  "scripts": {
+    "install:all": "npm install && npm install --prefix backend && npm install --prefix student && npm install --prefix admin && npm install --prefix landing",
+    "dev": "concurrently \"npm run dev --prefix backend\" \"npm run dev --prefix student\" \"npm run dev --prefix admin\" \"npm run dev --prefix landing\"",
+    "dev:backend": "npm run dev --prefix backend",
+    "dev:student": "npm run dev --prefix student"
+  },
+  "devDependencies": {
+    "concurrently": "^8.2.2"
+  }
+}

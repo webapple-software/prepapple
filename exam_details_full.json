@@ -1,0 +1,861 @@
+{
+  "exams": [
+    {
+      "exam_code": "UP_POLICE_CONSTABLE",
+      "exam_name": "UP Police Constable",
+      "category": "POLICE",
+      "mode": "OFFLINE",
+      "duration_minutes": 120,
+      "total_questions": 150,
+      "total_marks": 300,
+      "negative_marking": 0.5,
+      "is_qualifying_only": false,
+      "notes": "Some 2026 sources report negative_marking=0; verify against latest UPPRPB notification.",
+      "sections": [
+        {
+          "subject_name": "General Knowledge",
+          "question_count": 38,
+          "marks_per_question": 2,
+          "section_total_marks": 76
+        },
+        {
+          "subject_name": "General Hindi",
+          "question_count": 37,
+          "marks_per_question": 2,
+          "section_total_marks": 74
+        },
+        {
+          "subject_name": "Numerical & Mental Ability",
+          "question_count": 38,
+          "marks_per_question": 2,
+          "section_total_marks": 76
+        },
+        {
+          "subject_name": "Mental Aptitude / Reasoning",
+          "question_count": 37,
+          "marks_per_question": 2,
+          "section_total_marks": 74
+        }
+      ]
+    },
+    {
+      "exam_code": "UP_POLICE_SI",
+      "exam_name": "UP Police Sub-Inspector",
+      "category": "POLICE",
+      "mode": "ONLINE",
+      "duration_minutes": 120,
+      "total_questions": 160,
+      "total_marks": 400,
+      "negative_marking": 0,
+      "is_qualifying_only": false,
+      "notes": "qualifying_criteria: min 35% per subject AND 50% aggregate",
+      "sections": [
+        {
+          "subject_name": "General Hindi",
+          "question_count": 40,
+          "marks_per_question": 2.5,
+          "section_total_marks": 100
+        },
+        {
+          "subject_name": "Law / Constitution / GK",
+          "question_count": 40,
+          "marks_per_question": 2.5,
+          "section_total_marks": 100
+        },
+        {
+          "subject_name": "Numerical & Mental Ability",
+          "question_count": 40,
+          "marks_per_question": 2.5,
+          "section_total_marks": 100
+        },
+        {
+          "subject_name": "Mental Aptitude / Reasoning",
+          "question_count": 40,
+          "marks_per_question": 2.5,
+          "section_total_marks": 100
+        }
+      ]
+    },
+    {
+      "exam_code": "MAHARASHTRA_POLICE_CONSTABLE",
+      "exam_name": "Maharashtra Police Constable",
+      "category": "POLICE",
+      "mode": "OFFLINE",
+      "duration_minutes": 90,
+      "total_questions": 100,
+      "total_marks": 100,
+      "negative_marking": 0,
+      "is_qualifying_only": false,
+      "notes": "Separate PET/PST = 50 marks, not part of this written-exam record. Language: Marathi only.",
+      "sections": [
+        {
+          "subject_name": "General Knowledge & Current Affairs",
+          "question_count": 25,
+          "marks_per_question": 1,
+          "section_total_marks": 25
+        },
+        {
+          "subject_name": "Mathematics",
+          "question_count": 25,
+          "marks_per_question": 1,
+          "section_total_marks": 25
+        },
+        {
+          "subject_name": "Marathi Grammar",
+          "question_count": 25,
+          "marks_per_question": 1,
+          "section_total_marks": 25
+        },
+        {
+          "subject_name": "Intelligence Test / Reasoning",
+          "question_count": 25,
+          "marks_per_question": 1,
+          "section_total_marks": 25
+        }
+      ]
+    },
+    {
+      "exam_code": "BIHAR_POLICE_CONSTABLE",
+      "exam_name": "Bihar Police Constable",
+      "category": "POLICE",
+      "mode": "OFFLINE",
+      "duration_minutes": 120,
+      "total_questions": 100,
+      "total_marks": 100,
+      "negative_marking": 0,
+      "is_qualifying_only": true,
+      "notes": "Conducted by CSBC. Qualifying marks: 30%. Written exam is qualifying only — final merit is based on PET performance.",
+      "sections": [
+        {
+          "subject_name": "General Knowledge & Current Affairs",
+          "question_count": 25,
+          "marks_per_question": 1,
+          "section_total_marks": 25
+        },
+        {
+          "subject_name": "Mathematics",
+          "question_count": 25,
+          "marks_per_question": 1,
+          "section_total_marks": 25
+        },
+        {
+          "subject_name": "Science (Physics/Chemistry/Bio)",
+          "question_count": 25,
+          "marks_per_question": 1,
+          "section_total_marks": 25
+        },
+        {
+          "subject_name": "Hindi/English/Social Science",
+          "question_count": 25,
+          "marks_per_question": 1,
+          "section_total_marks": 25
+        }
+      ]
+    },
+    {
+      "exam_code": "DELHI_POLICE_CONSTABLE",
+      "exam_name": "Delhi Police Constable",
+      "category": "POLICE",
+      "mode": "ONLINE",
+      "duration_minutes": 90,
+      "total_questions": 100,
+      "total_marks": 100,
+      "negative_marking": 0.25,
+      "is_qualifying_only": false,
+      "notes": "Conducted by SSC on behalf of Delhi Police. Category-wise qualifying %: General 35%, SC/ST/OBC/EWS 30%, Ex-servicemen 25%.",
+      "sections": [
+        {
+          "subject_name": "General Awareness",
+          "question_count": 25,
+          "marks_per_question": 1,
+          "section_total_marks": 25
+        },
+        {
+          "subject_name": "Reasoning",
+          "question_count": 25,
+          "marks_per_question": 1,
+          "section_total_marks": 25
+        },
+        {
+          "subject_name": "Numerical Ability / Quantitative Aptitude",
+          "question_count": 25,
+          "marks_per_question": 1,
+          "section_total_marks": 25
+        },
+        {
+          "subject_name": "Computer Awareness",
+          "question_count": 25,
+          "marks_per_question": 1,
+          "section_total_marks": 25
+        }
+      ]
+    },
+    {
+      "exam_code": "RAJASTHAN_POLICE_CONSTABLE",
+      "exam_name": "Rajasthan Police Constable",
+      "category": "POLICE",
+      "mode": "OFFLINE",
+      "duration_minutes": 120,
+      "total_questions": 150,
+      "total_marks": 150,
+      "negative_marking": 0.25,
+      "is_qualifying_only": false,
+      "notes": "Section-wise split is approximate/equal — confirm from official notification. CET is a prerequisite. Pattern same across Constable GD/Driver/Band/Mounted/Dog Squad/Telecom posts.",
+      "sections": [
+        {
+          "subject_name": "Reasoning & Computer Knowledge",
+          "question_count": 38,
+          "marks_per_question": 1,
+          "section_total_marks": 38
+        },
+        {
+          "subject_name": "General Knowledge & Current Affairs",
+          "question_count": 38,
+          "marks_per_question": 1,
+          "section_total_marks": 38
+        },
+        {
+          "subject_name": "Crimes Against Women & Children (Law)",
+          "question_count": 37,
+          "marks_per_question": 1,
+          "section_total_marks": 37
+        },
+        {
+          "subject_name": "Rajasthan General Knowledge",
+          "question_count": 37,
+          "marks_per_question": 1,
+          "section_total_marks": 37
+        }
+      ]
+    },
+    {
+      "exam_code": "JEE_MAIN",
+      "exam_name": "JEE Main (Paper 1 - B.E./B.Tech)",
+      "category": "ENTRANCE",
+      "mode": "ONLINE",
+      "duration_minutes": 180,
+      "total_questions": 75,
+      "total_marks": 300,
+      "negative_marking": 1,
+      "is_qualifying_only": false,
+      "notes": "Each subject = 20 MCQ + 5 Numerical Value questions, all compulsory. negative_marking=1 applies to both MCQ and numerical questions.",
+      "sections": [
+        {
+          "subject_name": "Physics",
+          "question_count": 25,
+          "marks_per_question": 4,
+          "section_total_marks": 100
+        },
+        {
+          "subject_name": "Chemistry",
+          "question_count": 25,
+          "marks_per_question": 4,
+          "section_total_marks": 100
+        },
+        {
+          "subject_name": "Mathematics",
+          "question_count": 25,
+          "marks_per_question": 4,
+          "section_total_marks": 100
+        }
+      ]
+    },
+    {
+      "exam_code": "NEET_UG",
+      "exam_name": "NEET UG",
+      "category": "ENTRANCE",
+      "mode": "OFFLINE",
+      "duration_minutes": 180,
+      "total_questions": 180,
+      "total_marks": 720,
+      "negative_marking": 1,
+      "is_qualifying_only": false,
+      "notes": "marks_per_question=4 for correct answer; negative_marking=1 per wrong answer.",
+      "sections": [
+        {
+          "subject_name": "Physics",
+          "question_count": 45,
+          "marks_per_question": 4,
+          "section_total_marks": 180
+        },
+        {
+          "subject_name": "Chemistry",
+          "question_count": 45,
+          "marks_per_question": 4,
+          "section_total_marks": 180
+        },
+        {
+          "subject_name": "Botany",
+          "question_count": 45,
+          "marks_per_question": 4,
+          "section_total_marks": 180
+        },
+        {
+          "subject_name": "Zoology",
+          "question_count": 45,
+          "marks_per_question": 4,
+          "section_total_marks": 180
+        }
+      ]
+    },
+    {
+      "exam_code": "MHT_CET_PCM",
+      "exam_name": "MHT CET — PCM Group",
+      "category": "ENTRANCE",
+      "mode": "ONLINE",
+      "duration_minutes": 180,
+      "total_questions": 150,
+      "total_marks": 200,
+      "negative_marking": 0,
+      "is_qualifying_only": false,
+      "notes": "No negative marking. For PCB group use exam_code MHT_CET_PCB.",
+      "sections": [
+        {
+          "subject_name": "Mathematics",
+          "question_count": 50,
+          "marks_per_question": 2,
+          "section_total_marks": 100
+        },
+        {
+          "subject_name": "Physics",
+          "question_count": 50,
+          "marks_per_question": 1,
+          "section_total_marks": 50
+        },
+        {
+          "subject_name": "Chemistry",
+          "question_count": 50,
+          "marks_per_question": 1,
+          "section_total_marks": 50
+        }
+      ]
+    },
+    {
+      "exam_code": "MHT_CET_PCB",
+      "exam_name": "MHT CET — PCB Group",
+      "category": "ENTRANCE",
+      "mode": "ONLINE",
+      "duration_minutes": 180,
+      "total_questions": 200,
+      "total_marks": 200,
+      "negative_marking": 0,
+      "is_qualifying_only": false,
+      "notes": "No negative marking. Biology (Botany + Zoology combined) carries highest weightage.",
+      "sections": [
+        {
+          "subject_name": "Biology",
+          "question_count": 100,
+          "marks_per_question": 1,
+          "section_total_marks": 100
+        },
+        {
+          "subject_name": "Physics",
+          "question_count": 50,
+          "marks_per_question": 1,
+          "section_total_marks": 50
+        },
+        {
+          "subject_name": "Chemistry",
+          "question_count": 50,
+          "marks_per_question": 1,
+          "section_total_marks": 50
+        }
+      ]
+    },
+    {
+      "exam_code": "SSC_CGL_TIER1",
+      "exam_name": "SSC CGL — Tier 1",
+      "category": "SSC",
+      "mode": "ONLINE",
+      "duration_minutes": 60,
+      "total_questions": 100,
+      "total_marks": 200,
+      "negative_marking": 0.5,
+      "is_qualifying_only": true,
+      "notes": "Tier 1 is qualifying only (not counted in final merit). Tier 2 (SSC_CGL_TIER2) is the scoring stage: ~150 Qs, 450 marks, negative_marking=1.",
+      "sections": [
+        {
+          "subject_name": "General Intelligence & Reasoning",
+          "question_count": 25,
+          "marks_per_question": 2,
+          "section_total_marks": 50
+        },
+        {
+          "subject_name": "General Awareness",
+          "question_count": 25,
+          "marks_per_question": 2,
+          "section_total_marks": 50
+        },
+        {
+          "subject_name": "Quantitative Aptitude",
+          "question_count": 25,
+          "marks_per_question": 2,
+          "section_total_marks": 50
+        },
+        {
+          "subject_name": "English Comprehension",
+          "question_count": 25,
+          "marks_per_question": 2,
+          "section_total_marks": 50
+        }
+      ]
+    },
+    {
+      "exam_code": "SSC_CPO_PAPER1",
+      "exam_name": "SSC CPO — Paper 1 (SI in Delhi Police/CAPF)",
+      "category": "SSC",
+      "mode": "ONLINE",
+      "duration_minutes": 120,
+      "total_questions": 200,
+      "total_marks": 200,
+      "negative_marking": 0.25,
+      "is_qualifying_only": false,
+      "notes": "Sectional timing: 30 min/section. Paper 2 (SSC_CPO_PAPER2): English Language & Comprehension, 200 Qs, 200 marks, 0.25 negative marking. Both papers count toward final merit; PET/PST between the two is qualifying.",
+      "sections": [
+        {
+          "subject_name": "General Intelligence & Reasoning",
+          "question_count": 50,
+          "marks_per_question": 1,
+          "section_total_marks": 50
+        },
+        {
+          "subject_name": "General Knowledge & Awareness",
+          "question_count": 50,
+          "marks_per_question": 1,
+          "section_total_marks": 50
+        },
+        {
+          "subject_name": "Quantitative Aptitude",
+          "question_count": 50,
+          "marks_per_question": 1,
+          "section_total_marks": 50
+        },
+        {
+          "subject_name": "English Comprehension",
+          "question_count": 50,
+          "marks_per_question": 1,
+          "section_total_marks": 50
+        }
+      ]
+    },
+    {
+      "exam_code": "SSC_JE_PAPER1",
+      "exam_name": "SSC JE — Paper 1",
+      "category": "SSC",
+      "mode": "ONLINE",
+      "duration_minutes": 120,
+      "total_questions": 200,
+      "total_marks": 200,
+      "negative_marking": 0.25,
+      "is_qualifying_only": false,
+      "notes": "Paper 2 (SSC_JE_PAPER2) is stream-specific: 100 Qs, 300 marks (3 marks/Q), negative_marking=1. Candidate selects one engineering discipline at application stage.",
+      "sections": [
+        {
+          "subject_name": "General Intelligence & Reasoning",
+          "question_count": 50,
+          "marks_per_question": 1,
+          "section_total_marks": 50
+        },
+        {
+          "subject_name": "General Awareness",
+          "question_count": 50,
+          "marks_per_question": 1,
+          "section_total_marks": 50
+        },
+        {
+          "subject_name": "General Engineering (Civil/Elec/Mech - chosen stream)",
+          "question_count": 100,
+          "marks_per_question": 1,
+          "section_total_marks": 100
+        }
+      ]
+    },
+    {
+      "exam_code": "SSC_GD_CONSTABLE",
+      "exam_name": "SSC GD Constable",
+      "category": "SSC",
+      "mode": "ONLINE",
+      "duration_minutes": 60,
+      "total_questions": 80,
+      "total_marks": 160,
+      "negative_marking": 0.25,
+      "is_qualifying_only": false,
+      "notes": null,
+      "sections": [
+        {
+          "subject_name": "General Intelligence & Reasoning",
+          "question_count": 20,
+          "marks_per_question": 2,
+          "section_total_marks": 40
+        },
+        {
+          "subject_name": "General Knowledge & Awareness",
+          "question_count": 20,
+          "marks_per_question": 2,
+          "section_total_marks": 40
+        },
+        {
+          "subject_name": "Elementary Mathematics",
+          "question_count": 20,
+          "marks_per_question": 2,
+          "section_total_marks": 40
+        },
+        {
+          "subject_name": "English / Hindi",
+          "question_count": 20,
+          "marks_per_question": 2,
+          "section_total_marks": 40
+        }
+      ]
+    },
+    {
+      "exam_code": "SSC_CHSL_TIER1",
+      "exam_name": "SSC CHSL — Tier 1",
+      "category": "SSC",
+      "mode": "ONLINE",
+      "duration_minutes": 60,
+      "total_questions": 100,
+      "total_marks": 200,
+      "negative_marking": 0.5,
+      "is_qualifying_only": false,
+      "notes": "Tier 2 is a separate exam_code (SSC_CHSL_TIER2): 135 Qs, 405 marks, negative_marking=1.",
+      "sections": [
+        {
+          "subject_name": "General Intelligence (Reasoning)",
+          "question_count": 25,
+          "marks_per_question": 2,
+          "section_total_marks": 50
+        },
+        {
+          "subject_name": "General Awareness",
+          "question_count": 25,
+          "marks_per_question": 2,
+          "section_total_marks": 50
+        },
+        {
+          "subject_name": "Quantitative Aptitude",
+          "question_count": 25,
+          "marks_per_question": 2,
+          "section_total_marks": 50
+        },
+        {
+          "subject_name": "English Language",
+          "question_count": 25,
+          "marks_per_question": 2,
+          "section_total_marks": 50
+        }
+      ]
+    },
+    {
+      "exam_code": "SSC_MTS",
+      "exam_name": "SSC MTS / Havaldar",
+      "category": "SSC",
+      "mode": "ONLINE",
+      "duration_minutes": 90,
+      "total_questions": 90,
+      "total_marks": 270,
+      "negative_marking": null,
+      "is_qualifying_only": false,
+      "notes": "negative_marking differs by section: Session 1 = 0, Session 2 = 1. Store per-section negative_marking on exam_sections if needed.",
+      "sections": [
+        {
+          "subject_name": "Session1: Numerical Ability",
+          "question_count": 20,
+          "marks_per_question": 3,
+          "section_total_marks": 60,
+          "negative_marking": 0
+        },
+        {
+          "subject_name": "Session1: Reasoning",
+          "question_count": 20,
+          "marks_per_question": 3,
+          "section_total_marks": 60,
+          "negative_marking": 0
+        },
+        {
+          "subject_name": "Session2: General Awareness",
+          "question_count": 25,
+          "marks_per_question": 3,
+          "section_total_marks": 75,
+          "negative_marking": 1
+        },
+        {
+          "subject_name": "Session2: English Language",
+          "question_count": 25,
+          "marks_per_question": 3,
+          "section_total_marks": 75,
+          "negative_marking": 1
+        }
+      ]
+    },
+    {
+      "exam_code": "CTET_PAPER1",
+      "exam_name": "CTET — Paper 1 (Classes 1-5)",
+      "category": "TEACHING",
+      "mode": "OFFLINE",
+      "duration_minutes": 150,
+      "total_questions": 150,
+      "total_marks": 150,
+      "negative_marking": 0,
+      "is_qualifying_only": false,
+      "notes": "No negative marking. All sections carry equal weightage.",
+      "sections": [
+        {
+          "subject_name": "Child Development & Pedagogy",
+          "question_count": 30,
+          "marks_per_question": 1,
+          "section_total_marks": 30
+        },
+        {
+          "subject_name": "Language I",
+          "question_count": 30,
+          "marks_per_question": 1,
+          "section_total_marks": 30
+        },
+        {
+          "subject_name": "Language II",
+          "question_count": 30,
+          "marks_per_question": 1,
+          "section_total_marks": 30
+        },
+        {
+          "subject_name": "Mathematics",
+          "question_count": 30,
+          "marks_per_question": 1,
+          "section_total_marks": 30
+        },
+        {
+          "subject_name": "Environmental Studies",
+          "question_count": 30,
+          "marks_per_question": 1,
+          "section_total_marks": 30
+        }
+      ]
+    },
+    {
+      "exam_code": "CTET_PAPER2",
+      "exam_name": "CTET — Paper 2 (Classes 6-8)",
+      "category": "TEACHING",
+      "mode": "OFFLINE",
+      "duration_minutes": 150,
+      "total_questions": 150,
+      "total_marks": 150,
+      "negative_marking": 0,
+      "is_qualifying_only": false,
+      "notes": "No negative marking. Candidate picks either Maths+Science OR Social Studies as the subject section (60 marks, highest weightage).",
+      "sections": [
+        {
+          "subject_name": "Child Development & Pedagogy",
+          "question_count": 30,
+          "marks_per_question": 1,
+          "section_total_marks": 30
+        },
+        {
+          "subject_name": "Language I",
+          "question_count": 30,
+          "marks_per_question": 1,
+          "section_total_marks": 30
+        },
+        {
+          "subject_name": "Language II",
+          "question_count": 30,
+          "marks_per_question": 1,
+          "section_total_marks": 30
+        },
+        {
+          "subject_name": "Mathematics & Science / Social Studies",
+          "question_count": 60,
+          "marks_per_question": 1,
+          "section_total_marks": 60
+        }
+      ]
+    },
+    {
+      "exam_code": "DSSSB_TGT",
+      "exam_name": "DSSSB TGT (Trained Graduate Teacher)",
+      "category": "TEACHING",
+      "mode": "ONLINE",
+      "duration_minutes": 120,
+      "total_questions": 200,
+      "total_marks": 200,
+      "negative_marking": 0.25,
+      "is_qualifying_only": false,
+      "notes": "qualifying_criteria: General/EWS 40%, OBC(Delhi) 35%, SC/ST/PwBD 30%. subject_name for last row varies by post — model as a 'stream' field.",
+      "sections": [
+        {
+          "subject_name": "General Awareness",
+          "question_count": 20,
+          "marks_per_question": 1,
+          "section_total_marks": 20
+        },
+        {
+          "subject_name": "General Intelligence & Reasoning",
+          "question_count": 20,
+          "marks_per_question": 1,
+          "section_total_marks": 20
+        },
+        {
+          "subject_name": "Arithmetic & Numerical Ability",
+          "question_count": 20,
+          "marks_per_question": 1,
+          "section_total_marks": 20
+        },
+        {
+          "subject_name": "Hindi Language & Comprehension",
+          "question_count": 20,
+          "marks_per_question": 1,
+          "section_total_marks": 20
+        },
+        {
+          "subject_name": "English Language & Comprehension",
+          "question_count": 20,
+          "marks_per_question": 1,
+          "section_total_marks": 20
+        },
+        {
+          "subject_name": "Concerned Subject + Teaching Methodology",
+          "question_count": 100,
+          "marks_per_question": 1,
+          "section_total_marks": 100
+        }
+      ]
+    },
+    {
+      "exam_code": "BIHAR_TEACHER_BPSC_TRE",
+      "exam_name": "Bihar Teacher Recruitment (BPSC TRE)",
+      "category": "TEACHING",
+      "mode": "OFFLINE",
+      "duration_minutes": 150,
+      "total_questions": 150,
+      "total_marks": 150,
+      "negative_marking": 0,
+      "is_qualifying_only": false,
+      "notes": "Section-wise question split differs by post level (Primary/Middle/Secondary/Senior Secondary). Primary level has no Part III. Recommend storing post_level field (PRT/TGT/PGT).",
+      "sections": [
+        {
+          "subject_name": "Language (Part I)",
+          "question_count": "varies",
+          "marks_per_question": 1,
+          "section_total_marks": "varies"
+        },
+        {
+          "subject_name": "General Studies (Part II)",
+          "question_count": "varies",
+          "marks_per_question": 1,
+          "section_total_marks": "varies"
+        },
+        {
+          "subject_name": "Concerned Subject (Part III)",
+          "question_count": "varies",
+          "marks_per_question": 1,
+          "section_total_marks": "varies"
+        }
+      ]
+    },
+    {
+      "exam_code": "NDA",
+      "exam_name": "NDA (National Defence Academy)",
+      "category": "DEFENSE",
+      "mode": "OFFLINE",
+      "duration_minutes": 300,
+      "total_questions": 270,
+      "total_marks": 900,
+      "negative_marking": null,
+      "is_qualifying_only": false,
+      "notes": "negative_marking differs by paper: Maths = 0.83, GAT = 1.33 (store per-section). Written exam total = 900; SSB Interview adds another 900 marks separately (not part of this written-exam record).",
+      "sections": [
+        {
+          "subject_name": "Mathematics",
+          "question_count": 120,
+          "marks_per_question": 2.5,
+          "section_total_marks": 300,
+          "negative_marking": 0.83
+        },
+        {
+          "subject_name": "GAT: English",
+          "question_count": "~50",
+          "marks_per_question": 4,
+          "section_total_marks": 200,
+          "negative_marking": 1.33
+        },
+        {
+          "subject_name": "GAT: General Knowledge",
+          "question_count": "~100",
+          "marks_per_question": 4,
+          "section_total_marks": 400,
+          "negative_marking": 1.33
+        }
+      ]
+    },
+    {
+      "exam_code": "CDS_IMA_INA_AFA",
+      "exam_name": "CDS — IMA / INA / AFA stream",
+      "category": "DEFENSE",
+      "mode": "OFFLINE",
+      "duration_minutes": 120,
+      "total_questions": 300,
+      "total_marks": 300,
+      "negative_marking": 0.33,
+      "is_qualifying_only": false,
+      "notes": "Male candidates only for this stream. Separate exam_code CDS_OTA: 2 sections only (English + GK), 200 Qs, 200 marks — no Mathematics paper, open to both genders.",
+      "sections": [
+        {
+          "subject_name": "English",
+          "question_count": 100,
+          "marks_per_question": 1,
+          "section_total_marks": 100
+        },
+        {
+          "subject_name": "General Knowledge",
+          "question_count": 100,
+          "marks_per_question": 1,
+          "section_total_marks": 100
+        },
+        {
+          "subject_name": "Elementary Mathematics",
+          "question_count": 100,
+          "marks_per_question": 1,
+          "section_total_marks": 100
+        }
+      ]
+    },
+    {
+      "exam_code": "AFCAT",
+      "exam_name": "AFCAT (Air Force Common Admission Test)",
+      "category": "DEFENSE",
+      "mode": "ONLINE",
+      "duration_minutes": 120,
+      "total_questions": 100,
+      "total_marks": 300,
+      "negative_marking": 1,
+      "is_qualifying_only": false,
+      "notes": "For Technical Branch candidates, an additional EKT (Engineering Knowledge Test) is required: 50 Qs, 150 marks, 45 minutes — modeled as a separate linked exam_code (AFCAT_EKT).",
+      "sections": [
+        {
+          "subject_name": "Reasoning & Military Aptitude",
+          "question_count": 25,
+          "marks_per_question": 3,
+          "section_total_marks": 75
+        },
+        {
+          "subject_name": "Verbal Ability in English",
+          "question_count": 25,
+          "marks_per_question": 3,
+          "section_total_marks": 75
+        },
+        {
+          "subject_name": "General Awareness",
+          "question_count": 25,
+          "marks_per_question": 3,
+          "section_total_marks": 75
+        },
+        {
+          "subject_name": "Numerical Ability",
+          "question_count": 25,
+          "marks_per_question": 3,
+          "section_total_marks": 75
+        }
+      ]
+    }
+  ]
+}
