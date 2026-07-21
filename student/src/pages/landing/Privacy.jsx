@@ -26,6 +26,11 @@ const Privacy = () => {
             <h2 className="text-2xl font-bold text-slate-800 mb-3">4. Data Security</h2>
             <p>We take reasonable measures to help protect information about you from loss, theft, misuse, and unauthorized access. All payment processing is handled via secure third-party gateways.</p>
           </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-slate-800 mb-3">5. Privacy Inquiries & Contact</h2>
+            <p>If you have any questions or concerns regarding your privacy or data protection on PrepApple, please write to us at <a href="mailto:prepapple.edu@gmail.com" className="text-blue-600 font-bold hover:underline">prepapple.edu@gmail.com</a>.</p>
+          </section>
         </div>
       </div>
     </div>

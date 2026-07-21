@@ -220,7 +220,7 @@ const Home = () => {
               </h1>
 
               <p className="text-[18px] leading-[1.7] text-[#6B7280] font-normal max-w-xl mx-auto lg:mx-0">
-                PrepApple stands for Exam Excellence. Access authentic computer-based grand mocks, chapter-wise sectionals, and daily quizzes designed by trusted mentors. Start practicing now for just <span className="text-[#2563EB] font-bold">₹25/month</span>.
+                <span className="font-extrabold text-[#0B1F4D]">Prep<span className="text-[#1E88E5]">Apple</span></span> stands for Exam Excellence. Access authentic computer-based grand mocks, chapter-wise sectionals, and daily quizzes designed by trusted mentors. Start practicing now for just <span className="text-[#2563EB] font-bold">₹25/month</span>.
               </p>
               
               {/* Custom Non-repetitive Unique Buttons */}

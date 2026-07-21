@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
-import { User, Shield, GraduationCap, Key, AlertCircle } from 'lucide-react';
+import { User, Key, AlertCircle, ExternalLink } from 'lucide-react';
 
 export default function Login({ role = 'student' }: { role?: 'student' | 'admin' }) {
   const [username, setUsername] = useState('');
@@ -64,16 +64,16 @@ export default function Login({ role = 'student' }: { role?: 'student' | 'admin'
       <div className="relative z-10 w-full max-w-lg bg-white backdrop-blur-md rounded-3xl border border-slate-200/80 p-8 shadow-2xl shadow-slate-100/70 overflow-hidden animate-in fade-in zoom-in-95 duration-200">
         
         {/* Brand/Logo Header */}
-        <div className="flex flex-col items-center mb-8">
-          <div className="bg-blue-600 p-3.5 rounded-2xl text-white shadow-xl shadow-blue-500/20 mb-3.5">
-            {role === 'admin' ? (
-              <Shield className="w-8 h-8" />
-            ) : (
-              <GraduationCap className="w-8 h-8" />
-            )}
-          </div>
-          <h2 className="text-2xl font-black text-slate-800 uppercase tracking-wider flex items-center">
-            PrepApple <span className="text-blue-650 font-extrabold text-xs ml-1.5 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">{role.toUpperCase()}</span>
+        <div className="flex flex-col items-center mb-6 text-center">
+          <img 
+            src="/assets/logo-prepapple.png" 
+            alt="PrepApple Logo" 
+            className="h-16 w-auto object-contain mb-3 drop-shadow-sm"
+            onError={(e: any) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }}
+          />
+          <h2 className="text-2xl font-black text-slate-800 uppercase tracking-wider flex items-center gap-1">
+            <span>Prep<span className="text-[#1E88E5]">Apple</span></span>
+            <span className="text-blue-600 font-extrabold text-xs ml-1.5 bg-blue-50 px-2 py-0.5 rounded border border-blue-200">{role.toUpperCase()}</span>
           </h2>
           <p className="text-slate-400 text-xs font-bold uppercase tracking-widest mt-1.5">{role} Login Portal</p>
         </div>
@@ -97,10 +97,10 @@ export default function Login({ role = 'student' }: { role?: 'student' | 'admin'
               <input
                 type="text"
                 required
-                placeholder={role === 'admin' ? 'mahakal' : 'Enter your username'}
+                placeholder={role === 'admin' ? 'Enter your Admin ID' : 'Enter your username'}
                 value={username}
                 onChange={(e) => setUsername(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-205 border-slate-200 focus:border-blue-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/10 font-semibold text-slate-800 text-sm placeholder-slate-400 transition-all"
+                className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 focus:border-blue-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/10 font-semibold text-slate-800 text-sm placeholder-slate-400 transition-all"
               />
             </div>
           </div>
@@ -115,16 +115,10 @@ export default function Login({ role = 'student' }: { role?: 'student' | 'admin'
                 placeholder="Enter password"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
-                className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-205 border-slate-200 focus:border-blue-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/10 font-semibold text-slate-800 text-sm placeholder-slate-400 transition-all"
+                className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 focus:border-blue-500 rounded-xl focus:outline-none focus:ring-2 focus:ring-blue-500/10 font-semibold text-slate-800 text-sm placeholder-slate-400 transition-all"
               />
             </div>
           </div>
-
-          {role === 'admin' && (
-            <div className="text-[10px] text-slate-550 bg-slate-50 border border-slate-200 p-3 rounded-xl font-semibold leading-relaxed">
-              💡 Use ID: <strong className="text-slate-800 font-black">mahakal</strong> and Password: <strong className="text-slate-800 font-black">mahakal@123</strong> to login as admin.
-            </div>
-          )}
 
           <button
             type="submit"
@@ -142,20 +136,36 @@ export default function Login({ role = 'student' }: { role?: 'student' | 'admin'
           </button>
         </form>
 
+        {/* If student doesn't have ID/Password, show Google Form link */}
+        {role === 'student' && (
+          <div className="mt-5 p-4 bg-blue-50/80 border border-blue-100 rounded-2xl text-center shadow-sm">
+            <p className="text-xs text-slate-600 font-semibold mb-1">If you don't have an ID & Password:</p>
+            <a 
+              href="https://forms.gle/ML2urJTy75xXFXK18" 
+              target="_blank" 
+              rel="noopener noreferrer"
+              className="text-xs font-extrabold text-blue-600 hover:text-blue-800 inline-flex items-center gap-1.5 uppercase tracking-wider transition-colors"
+            >
+              <span>Fill Google Form to Register</span>
+              <ExternalLink className="w-3.5 h-3.5" />
+            </a>
+          </div>
+        )}
+
         {/* Portal Switching Links */}
-        <div className="mt-8 pt-6 border-t border-slate-200/80 flex flex-col gap-2.5 text-center">
+        <div className="mt-6 pt-5 border-t border-slate-200/80 flex flex-col gap-2 text-center">
           {role !== 'student' && (
-            <Link to="/login/student" className="text-xs font-bold text-blue-650 hover:text-blue-700 transition-colors uppercase tracking-wider">
+            <Link to="/login/student" className="text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-wider">
               Are you a Student? Go to Student Portal
             </Link>
           )}
           {role !== 'admin' && (
-            <Link to="/login/admin" className="text-xs font-bold text-blue-650 hover:text-blue-700 transition-colors uppercase tracking-wider">
+            <Link to="/login/admin" className="text-xs font-bold text-blue-600 hover:text-blue-700 transition-colors uppercase tracking-wider">
               Are you an Admin? Go to Admin Portal
             </Link>
           )}
-          <Link to="/" className="text-[11px] font-bold text-slate-400 hover:text-slate-600 transition-colors mt-1.5 uppercase tracking-wider">
-            ← Back to Portal Selection
+          <Link to="/" className="text-[11px] font-bold text-slate-400 hover:text-slate-600 transition-colors mt-1 uppercase tracking-wider">
+            ← Back to Home Page
           </Link>
         </div>
       </div>

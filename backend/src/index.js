@@ -74,17 +74,27 @@ app.use('/api/admin', adminRoutes);
 app.use('/api/categories', require('./routes/categoryRoutes'));
 app.use('/api', require('./routes/importQuestions'));
 
-// Serve static built frontend files
+// Serve static built frontend files if dist folder exists
 const frontendBuildPath = path.join(__dirname, '../../student/dist');
-app.use(express.static(frontendBuildPath));
+const indexHtmlPath = path.join(frontendBuildPath, 'index.html');
 
-// Fallback for React Router SPA (Single Page Application) routing
+if (fs.existsSync(frontendBuildPath)) {
+  app.use(express.static(frontendBuildPath));
+}
+
+// Fallback for React Router SPA routing or API info
 app.get('*', (req, res) => {
-  // If request is for an API or doesn't match a static asset, fallback to React index.html
   if (req.originalUrl.startsWith('/api') || req.originalUrl.startsWith('/uploads')) {
     return res.status(404).json({ error: 'Endpoint not found' });
   }
-  res.sendFile(path.join(frontendBuildPath, 'index.html'));
+  if (fs.existsSync(indexHtmlPath)) {
+    return res.sendFile(indexHtmlPath);
+  }
+  res.json({
+    message: 'PrepApple Backend API Server is Live & Running!',
+    status: 'healthy',
+    environment: 'production'
+  });
 });
 
 // Simple global error handler

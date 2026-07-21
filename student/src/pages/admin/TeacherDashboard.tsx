@@ -1032,9 +1032,20 @@ export default function TeacherDashboard({ isEmbedded = false }: { isEmbedded?: 
         </div>
       ) : (
         <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 mb-8">
-          <div>
-            <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight">Admin Test Manager</h1>
-            <p className="text-gray-500">Create tests, manage questions, and review student attempt performance.</p>
+          <div className="flex items-center gap-3.5">
+            <img 
+              src="/assets/logo-prepapple.png" 
+              alt="PrepApple Logo" 
+              className="h-10 w-auto object-contain"
+              onError={(e: any) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }}
+            />
+            <div>
+              <h1 className="text-3xl font-extrabold text-gray-800 tracking-tight flex items-center gap-1.5">
+                <span>Prep<span className="text-[#1E88E5]">Apple</span></span>
+                <span className="text-sm font-semibold text-slate-400">| Test Manager</span>
+              </h1>
+              <p className="text-gray-500 text-xs mt-0.5">Create tests, manage questions, and review student attempt performance.</p>
+            </div>
           </div>
           <div className="flex gap-3">
             <Link

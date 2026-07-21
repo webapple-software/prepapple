@@ -18,7 +18,7 @@ const ContactUs = () => {
                 <Mail className="w-6 h-6 text-primary flex-shrink-0" />
                 <div>
                   <p className="font-bold text-slate-800">Email Us</p>
-                  <p>support@webapple.software</p>
+                  <a href="mailto:prepapple.edu@gmail.com" className="text-blue-600 font-semibold hover:underline">prepapple.edu@gmail.com</a>
                 </div>
               </div>
               <div className="flex items-start gap-4">

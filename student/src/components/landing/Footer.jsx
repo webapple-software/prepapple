@@ -12,7 +12,9 @@ const Footer = () => {
           <div className="col-span-1 md:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-6">
               <img src="/assets/logo.jpeg" alt="PrepApple Logo" className="h-14 w-auto object-contain mix-blend-multiply" />
-              <span className="font-heading font-extrabold text-3xl tracking-tight text-primary">PrepApple</span>
+              <span className="font-heading font-extrabold text-3xl tracking-tight text-[#0B1F4D]">
+                Prep<span className="text-[#1E88E5]">Apple</span>
+              </span>
             </Link>
             <p className="text-slate-600 font-medium mb-2 text-sm">PrepApple stands for Exam Excellence.</p>
             <p className="text-slate-500 text-sm mb-6">Made with Love ❤️</p>
@@ -34,35 +36,42 @@ const Footer = () => {
           <div>
             <h4 className="font-bold text-slate-900 mb-6 text-base">Company</h4>
             <ul className="space-y-4 text-slate-500 text-sm">
-              <li><Link to="/about" className="hover:text-primary transition-colors">About Us</Link></li>
-              <li><Link to="/" className="hover:text-primary transition-colors">View All Exams</Link></li>
-              <li><Link to="/faqs" className="hover:text-primary transition-colors">FAQs</Link></li>
-              <li><Link to="/" className="hover:text-primary transition-colors">Pricing</Link></li>
+              <li><Link to="/about" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-blue-600 transition-colors">About Us</Link></li>
+              <li><Link to="/" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-blue-600 transition-colors">View All Exams</Link></li>
+              <li><Link to="/faqs" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-blue-600 transition-colors">FAQs</Link></li>
+              <li><Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-blue-600 transition-colors">Contact Support</Link></li>
             </ul>
           </div>
           
           {/* Column 3: Quick Links */}
           <div>
-            <h4 className="font-bold text-slate-900 mb-6 text-base">Quick Links</h4>
+            <h4 className="font-bold text-slate-900 mb-6 text-base">Legal & Policies</h4>
             <ul className="space-y-4 text-slate-500 text-sm">
-              <li><Link to="/" className="hover:text-primary transition-colors">Premium Access</Link></li>
-              <li><Link to="/contact" className="hover:text-primary transition-colors">Feedback</Link></li>
-              <li><Link to="/terms" className="hover:text-primary transition-colors">Terms of Service</Link></li>
-              <li><Link to="/privacy" className="hover:text-primary transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/terms" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-blue-600 transition-colors">Terms of Service</Link></li>
+              <li><Link to="/privacy" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-blue-600 transition-colors">Privacy Policy</Link></li>
+              <li><Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-blue-600 transition-colors">Student Help Center</Link></li>
             </ul>
           </div>
           
           {/* Column 4: Contact Us */}
           <div>
-            <h4 className="font-bold text-slate-900 mb-6 text-base">Contact Us</h4>
+            <h4 className="font-bold text-slate-900 mb-6 text-base">Contact & Support</h4>
             <ul className="space-y-4 text-slate-500 text-sm">
-              <li><Link to="/contact" className="hover:text-primary transition-colors">Help Center</Link></li>
-              <li className="flex items-center gap-2 mt-4 text-slate-600">
-                <Mail className="w-4 h-4" /> support@webapple.software
+              <li><Link to="/contact" onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })} className="hover:text-blue-600 transition-colors">24/7 Helpdesk</Link></li>
+              <li className="flex items-center gap-2 mt-4 text-slate-700">
+                <Mail className="w-4 h-4 text-blue-600 flex-shrink-0" />
+                <a href="mailto:prepapple.edu@gmail.com" className="hover:text-blue-600 font-semibold transition-colors">prepapple.edu@gmail.com</a>
               </li>
             </ul>
           </div>
           
+        </div>
+
+        {/* Bottom Copyright Bar */}
+        <div className="pt-6 mt-8 border-t border-slate-200/80 text-center">
+          <p className="text-xs font-semibold text-slate-500">
+            © {new Date().getFullYear()} All rights reserved <a href="https://webapple.software" target="_blank" rel="noopener noreferrer" className="text-blue-600 hover:underline">webapple.software</a>
+          </p>
         </div>
       </div>
     </footer>

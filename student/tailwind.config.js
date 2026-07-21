@@ -6,6 +6,11 @@ export default {
   ],
   theme: {
     extend: {
+      fontFamily: {
+        sans: ['Inter', 'system-ui', '-apple-system', 'BlinkMacSystemFont', 'Segoe UI', 'Roboto', 'sans-serif'],
+        heading: ['Inter', 'sans-serif'],
+        body: ['Inter', 'sans-serif'],
+      },
       colors: {
         webapple: {
           answered: '#2e7d32', // Green (NTA Answered)

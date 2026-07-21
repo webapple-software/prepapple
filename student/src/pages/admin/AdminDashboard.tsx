@@ -847,17 +847,18 @@ export default function AdminDashboard() {
           {/* Logo Brand & Collapse Toggle */}
           <div className={`px-4 py-6 border-b border-blue-950 flex items-center justify-between gap-3 ${isSidebarCollapsed ? 'justify-center' : ''}`}>
             <div className="flex items-center gap-3">
-              <div 
+              <img 
+                src="/assets/logo-prepapple.png" 
+                alt="PrepApple Logo" 
                 onClick={() => isSidebarCollapsed && setIsSidebarCollapsed(false)}
-                className={`bg-blue-600/30 p-2 rounded-xl border border-blue-400/30 text-white flex items-center justify-center ${isSidebarCollapsed ? 'cursor-pointer hover:bg-blue-600/50' : ''}`}
+                className={`h-9 w-auto object-contain flex-shrink-0 bg-white/10 p-1 rounded-xl border border-white/10 ${isSidebarCollapsed ? 'cursor-pointer hover:bg-white/20' : ''}`}
                 title={isSidebarCollapsed ? "Expand Sidebar" : undefined}
-              >
-                <Shield className="w-5.5 h-5.5" />
-              </div>
+                onError={(e: any) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }}
+              />
               {!isSidebarCollapsed && (
                 <div className="animate-fade-in">
                   <h1 className="font-extrabold text-white text-base md:text-lg tracking-tight uppercase leading-none">
-                    PrepApple
+                    Prep<span className="text-sky-400">Apple</span>
                   </h1>
                   <span className="text-[10px] text-blue-300 font-extrabold uppercase tracking-wider block mt-1">
                     Admin Control

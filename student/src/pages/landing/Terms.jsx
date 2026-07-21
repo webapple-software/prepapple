@@ -26,6 +26,11 @@ const Terms = () => {
             <h2 className="text-2xl font-bold text-slate-800 mb-3">4. Limitation of Liability</h2>
             <p>PrepApple is an educational tool. We do not guarantee admission into any college, university, or job placement based on your performance on our mock tests.</p>
           </section>
+
+          <section>
+            <h2 className="text-2xl font-bold text-slate-800 mb-3">5. Contact & Support</h2>
+            <p>If you have any questions or feedback regarding these Terms, please contact our support team at <a href="mailto:prepapple.edu@gmail.com" className="text-blue-600 font-bold hover:underline">prepapple.edu@gmail.com</a>.</p>
+          </section>
         </div>
       </div>
     </div>

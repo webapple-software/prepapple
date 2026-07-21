@@ -10,7 +10,9 @@ const Navbar = () => {
           <Link to="/" className="flex items-center gap-3">
             <img src="/assets/logo.jpeg" alt="PrepApple Logo" className="h-12 w-auto mix-blend-multiply" onError={(e) => { e.target.onerror = null; e.target.src = "https://via.placeholder.com/50x50?text=Logo"; }} />
             <div className="flex flex-col">
-              <span className="font-heading font-extrabold text-2xl text-primary leading-none">PrepApple</span>
+              <span className="font-heading font-extrabold text-2xl text-[#0B1F4D] leading-none">
+                Prep<span className="text-[#1E88E5]">Apple</span>
+              </span>
               <span className="text-[10px] text-gray-500 font-medium uppercase tracking-wider">Practice Today. Excel Tomorrow.</span>
             </div>
           </Link>
