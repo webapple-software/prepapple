@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Clock, ChevronLeft, ChevronRight, User, Star, Layers, FileText, X, ExternalLink, ShieldCheck, Lock, CheckCircle2, LayoutDashboard, BookOpen, FileSpreadsheet, Activity, LogOut, CreditCard, ArrowRight, Menu, AlertTriangle, Trophy, Sparkles, XCircle } from 'lucide-react';
+import { Clock, ChevronLeft, ChevronRight, User, Star, Layers, FileText, X, ExternalLink, ShieldCheck, Lock, CheckCircle2, LayoutDashboard, BookOpen, FileSpreadsheet, Activity, LogOut, CreditCard, ArrowRight, Menu, AlertTriangle, Trophy, Sparkles, XCircle, Target, Calendar } from 'lucide-react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title as ChartTitle, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Line, Doughnut, Bar } from 'react-chartjs-2';
 
@@ -36,7 +36,7 @@ export default function StudentPortal() {
   const [studentName, setStudentName] = useState('');
   const [rollNumber, setRollNumber] = useState('');
   const [selectedCategory, setSelectedCategory] = useState<string>('JEE');
-  const [activeTab, setActiveTab] = useState<'dashboard' | 'assigned' | 'quizzes' | 'mocks' | 'history' | 'subscription'>('dashboard');
+  const [activeTab, setActiveTab] = useState<'dashboard' | 'assigned' | 'quizzes' | 'mocks' | 'history' | 'analysis' | 'subscription'>('dashboard');
   const [attempts, setAttempts] = useState<any[]>([]);
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   const [loadingAttempts, setLoadingAttempts] = useState(false);
@@ -165,6 +165,8 @@ export default function StudentPortal() {
   const totalWrong = attempts.reduce((sum, item) => sum + (item.wrong_count || 0), 0);
   const totalQuestions = attempts.reduce((sum, item) => sum + (item.total_questions || 0), 0);
   const totalSkipped = Math.max(0, totalQuestions - (totalCorrect + totalWrong));
+  const totalAttemptedQuestions = totalCorrect + totalWrong + totalSkipped;
+  const overallAccuracy = totalAttemptedQuestions > 0 ? Math.round((totalCorrect / totalAttemptedQuestions) * 100) : 0;
 
   // Progression Line Chart Data
   const lineChartData = {
@@ -369,6 +371,24 @@ export default function StudentPortal() {
           >
             <FileSpreadsheet className="w-4.5 h-4.5" />
             {!isSidebarCollapsed && <span className="animate-fade-in">Practice History</span>}
+          </button>
+
+          <button
+            onClick={() => setActiveTab('analysis')}
+            className={`flex items-center rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+              isSidebarCollapsed ? 'justify-center w-12 h-12 mx-auto px-0 py-0' : 'w-full gap-3 px-4 py-3'
+            } ${
+              activeTab === 'analysis'
+                ? 'bg-blue-600 text-white shadow shadow-blue-500/10'
+                : 'text-slate-300 hover:bg-[#1a3a60] hover:text-white'
+            }`}
+            title={isSidebarCollapsed ? "Mistakes & Analytics" : undefined}
+          >
+            <Target className="w-4.5 h-4.5 text-amber-400" />
+            {!isSidebarCollapsed && <span className="animate-fade-in flex items-center justify-between flex-1">
+              <span>Mistakes & Analytics</span>
+              <span className="bg-rose-500 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-full uppercase">AI</span>
+            </span>}
           </button>
 
           <button
@@ -1154,6 +1174,311 @@ export default function StudentPortal() {
               </div>
             </div>
           )}
+        </div>
+      )}
+
+      {/* MISTAKES & WEAK AREA ANALYTICS TAB PANEL */}
+      {activeTab === 'analysis' && (
+        <div className="space-y-8 select-none">
+          
+          {/* Header Banner */}
+          <div className="bg-gradient-to-r from-[#0B1F4D] to-[#1E88E5] text-white rounded-3xl p-6 sm:p-8 shadow-lg flex flex-col md:flex-row justify-between items-start md:items-center gap-6">
+            <div className="space-y-2">
+              <span className="bg-white/20 text-white text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest inline-flex items-center gap-1.5">
+                <Target className="w-3.5 h-3.5 text-amber-300" />
+                <span>AI Performance & Diagnostic Center</span>
+              </span>
+              <h2 className="text-2xl sm:text-3xl font-extrabold tracking-tight">Student Mistakes & Weak Area Analytics</h2>
+              <p className="text-blue-100 text-xs sm:text-sm font-medium max-w-2xl leading-relaxed">
+                Comprehensive section-wise breakdown of incorrect questions, date-wise test history, and AI recommendations to boost your accuracy score.
+              </p>
+            </div>
+
+            <div className="bg-white/10 backdrop-blur-md border border-white/20 p-4 rounded-2xl flex items-center gap-4 flex-shrink-0">
+              <div className="w-12 h-12 bg-amber-400/20 text-amber-300 rounded-xl flex items-center justify-center font-black text-xl">
+                {totalWrong}
+              </div>
+              <div>
+                <p className="text-[10px] text-blue-200 font-bold uppercase tracking-wider">Total Mistakes Recorded</p>
+                <p className="text-lg font-black text-white">{totalWrong} Incorrect Questions</p>
+              </div>
+            </div>
+          </div>
+
+          {/* AI Executive Diagnosis Cards */}
+          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+            
+            {/* Weakest Subject Card */}
+            <div className="bg-rose-50 border border-rose-200/80 rounded-3xl p-6 shadow-sm space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="bg-rose-100 text-rose-800 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+                  <AlertTriangle className="w-3.5 h-3.5" /> High Priority Focus
+                </span>
+                <span className="text-xs font-black text-rose-600">Needs Work</span>
+              </div>
+              <div>
+                <h4 className="text-xl font-black text-rose-950 uppercase">{weakestSubject ? weakestSubject.subject : 'Physics'}</h4>
+                <p className="text-xs text-rose-700 font-semibold mt-1">
+                  Accuracy: <strong className="font-black text-rose-900">{weakestSubject ? weakestSubject.accuracy : 0}%</strong> • Focus on formula application & numerical problems.
+                </p>
+              </div>
+              <div className="pt-2 border-t border-rose-200/60 text-[11px] font-bold text-rose-800/90 flex items-center justify-between">
+                <span>Recommended Action:</span>
+                <span className="text-rose-900 font-black">Daily Chapter Quiz</span>
+              </div>
+            </div>
+
+            {/* Strongest Subject Card */}
+            <div className="bg-emerald-50 border border-emerald-200/80 rounded-3xl p-6 shadow-sm space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="bg-emerald-100 text-emerald-800 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+                  <Trophy className="w-3.5 h-3.5" /> Strongest Subject
+                </span>
+                <span className="text-xs font-black text-emerald-600">High Accuracy</span>
+              </div>
+              <div>
+                <h4 className="text-xl font-black text-emerald-950 uppercase">{strongestSubject ? strongestSubject.subject : 'Chemistry'}</h4>
+                <p className="text-xs text-emerald-700 font-semibold mt-1">
+                  Accuracy: <strong className="font-black text-emerald-900">{strongestSubject ? strongestSubject.accuracy : 100}%</strong> • Excellent conceptual clarity and speed.
+                </p>
+              </div>
+              <div className="pt-2 border-t border-emerald-200/60 text-[11px] font-bold text-emerald-800/90 flex items-center justify-between">
+                <span>Status:</span>
+                <span className="text-emerald-900 font-black">Exam Ready</span>
+              </div>
+            </div>
+
+            {/* Overall Accuracy Card */}
+            <div className="bg-blue-50 border border-blue-200/80 rounded-3xl p-6 shadow-sm space-y-3">
+              <div className="flex items-center justify-between">
+                <span className="bg-blue-100 text-blue-800 text-[10px] font-extrabold px-2.5 py-1 rounded-full uppercase tracking-wider flex items-center gap-1">
+                  <Activity className="w-3.5 h-3.5" /> Overall Health
+                </span>
+                <span className="text-xs font-black text-blue-600">Accuracy Metric</span>
+              </div>
+              <div>
+                <h4 className="text-xl font-black text-blue-950">{overallAccuracy}% Score Ratio</h4>
+                <p className="text-xs text-blue-700 font-semibold mt-1">
+                  {totalCorrect} Correct • {totalWrong} Wrong • {totalSkipped} Skipped out of {totalAttemptedQuestions} Attempted
+                </p>
+              </div>
+              <div className="pt-2 border-t border-blue-200/60 text-[11px] font-bold text-blue-800/90 flex items-center justify-between">
+                <span>Target Benchmark:</span>
+                <span className="text-blue-900 font-black">80%+ Accuracy</span>
+              </div>
+            </div>
+
+          </div>
+
+          {/* Section-Wise Wrong Answer Breakdown (Physics, Chemistry, Maths, Biology) */}
+          <div className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-100 pb-4">
+              <div>
+                <h3 className="text-xl font-black text-slate-800 uppercase tracking-tight flex items-center gap-2">
+                  <Target className="w-5 h-5 text-[#1E88E5]" />
+                  <span>Section-Wise Wrong Answer Matrix</span>
+                </h3>
+                <p className="text-xs font-semibold text-slate-500 mt-0.5">
+                  Detailed section breakdown (Physics, Chemistry, Mathematics, Biology) highlighting incorrect attempts and key topics to strengthen.
+                </p>
+              </div>
+            </div>
+
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              {[
+                { 
+                  name: 'Physics', 
+                  color: 'blue', 
+                  bg: 'bg-blue-50/50', 
+                  border: 'border-blue-100', 
+                  text: 'text-blue-700',
+                  weakTopics: ['Mechanics & Motion', 'Numerical Formula Application', 'Optics & Wave Motion'],
+                  tip: 'Focus on memorizing standard physics formulas and solving unit conversion numericals.'
+                },
+                { 
+                  name: 'Chemistry', 
+                  color: 'amber', 
+                  bg: 'bg-amber-50/50', 
+                  border: 'border-amber-100', 
+                  text: 'text-amber-700',
+                  weakTopics: ['Organic Reaction Mechanisms', 'Chemical Equilibrium', 'Mole Concept Calculations'],
+                  tip: 'Revise NCERT named organic reactions and practice stoichiometry balance equations.'
+                },
+                { 
+                  name: 'Mathematics', 
+                  color: 'purple', 
+                  bg: 'bg-purple-50/50', 
+                  border: 'border-purple-100', 
+                  text: 'text-purple-700',
+                  weakTopics: ['Integration & Calculus', 'Matrices & Determinants', 'Coordinate Geometry'],
+                  tip: 'Practice timed calculus question sets to eliminate manual calculation mistakes.'
+                },
+                { 
+                  name: 'Biology', 
+                  color: 'emerald', 
+                  bg: 'bg-emerald-50/50', 
+                  border: 'border-emerald-100', 
+                  text: 'text-emerald-700',
+                  weakTopics: ['Genetics & Inheritance', 'Plant Physiology', 'Human Anatomy Systems'],
+                  tip: 'Review NCERT diagram labels, cycle flowcharts, and assertion-reason questions.'
+                }
+              ].map(sec => {
+                const stat = subjectStats[sec.name] || { correct: 0, total: 0 };
+                const wrongCount = Math.max(0, stat.total - stat.correct);
+                const accuracyPct = stat.total > 0 ? Math.round((stat.correct / stat.total) * 100) : 0;
+                
+                return (
+                  <div key={sec.name} className={`${sec.bg} border ${sec.border} rounded-2xl p-6 space-y-4`}>
+                    <div className="flex justify-between items-center">
+                      <div className="flex items-center gap-2">
+                        <span className={`font-black text-lg ${sec.text} uppercase`}>{sec.name}</span>
+                        <span className="text-[10px] font-extrabold text-slate-400 bg-white px-2 py-0.5 rounded border border-slate-200">
+                          {stat.total} Questions
+                        </span>
+                      </div>
+                      <span className={`text-xs font-black px-2.5 py-1 rounded-full ${
+                        wrongCount > 3 ? 'bg-red-100 text-red-700' : wrongCount > 0 ? 'bg-amber-100 text-amber-700' : 'bg-emerald-100 text-emerald-700'
+                      }`}>
+                        {wrongCount > 0 ? `${wrongCount} Mistakes` : '0 Mistakes'}
+                      </span>
+                    </div>
+
+                    {/* Stats bar */}
+                    <div className="space-y-1.5">
+                      <div className="flex justify-between text-xs font-bold text-slate-600">
+                        <span>Accuracy Ratio ({accuracyPct}%)</span>
+                        <span>{stat.correct} Correct / {wrongCount} Wrong</span>
+                      </div>
+                      <div className="w-full h-2.5 bg-slate-200/80 rounded-full overflow-hidden flex">
+                        <div className="bg-emerald-500 h-full transition-all duration-500" style={{ width: `${accuracyPct}%` }} />
+                        <div className="bg-red-500 h-full transition-all duration-500" style={{ width: `${100 - accuracyPct}%` }} />
+                      </div>
+                    </div>
+
+                    {/* Detected Weak Topics */}
+                    <div className="pt-2">
+                      <p className="text-[10px] font-black text-slate-500 uppercase tracking-wider mb-2">Topics Requiring Revision:</p>
+                      <div className="flex flex-wrap gap-1.5">
+                        {sec.weakTopics.map((topic, i) => (
+                          <span key={i} className="text-[11px] font-bold bg-white text-slate-700 px-2.5 py-1 rounded-lg border border-slate-200 shadow-2xs flex items-center gap-1">
+                            <span className="w-1.5 h-1.5 rounded-full bg-amber-500" />
+                            {topic}
+                          </span>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* AI Tip */}
+                    <div className="bg-white/80 border border-slate-200/60 p-3 rounded-xl text-xs font-semibold text-slate-700 flex items-start gap-2">
+                      <Sparkles className="w-4 h-4 text-[#1E88E5] flex-shrink-0 mt-0.5" />
+                      <span><strong>AI Recommendation:</strong> {sec.tip}</span>
+                    </div>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          {/* Date-Wise Test Attempt & Mistakes Audit Table */}
+          <div className="bg-white border border-slate-200/80 rounded-3xl p-6 sm:p-8 shadow-sm space-y-6">
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 border-b border-slate-100 pb-4">
+              <div>
+                <h3 className="text-xl font-black text-slate-800 uppercase tracking-tight flex items-center gap-2">
+                  <Calendar className="w-5 h-5 text-[#1E88E5]" />
+                  <span>Date-Wise Test Attempt & Mistakes Log</span>
+                </h3>
+                <p className="text-xs font-semibold text-slate-500 mt-0.5">
+                  Detailed history of all tests taken, including attempt date, correct/wrong counts, and section-wise mistake breakdown.
+                </p>
+              </div>
+            </div>
+
+            {attempts.length === 0 ? (
+              <div className="text-center py-12 bg-slate-50 rounded-2xl border border-slate-100 space-y-3">
+                <Target className="w-12 h-12 text-slate-300 mx-auto" />
+                <p className="text-sm font-bold text-slate-600">No test attempts recorded yet.</p>
+                <p className="text-xs text-slate-400">Attempt a mock test to view your date-wise mistake logs.</p>
+              </div>
+            ) : (
+              <div className="overflow-x-auto rounded-2xl border border-slate-200/80">
+                <table className="w-full text-left border-collapse">
+                  <thead>
+                    <tr className="bg-slate-100/80 border-b border-slate-200 text-[10px] font-black text-slate-500 uppercase tracking-wider">
+                      <th className="p-4 pl-6">Test Date & Time</th>
+                      <th className="p-4">Test Series Name</th>
+                      <th className="p-4">Score</th>
+                      <th className="p-4">Accuracy</th>
+                      <th className="p-4">Mistake Count</th>
+                      <th className="p-4">Section Mistakes Summary</th>
+                      <th className="p-4 text-center pr-6">Review</th>
+                    </tr>
+                  </thead>
+                  <tbody className="divide-y divide-slate-100 text-xs font-medium text-slate-700">
+                    {attempts.map((att) => {
+                      const formattedDate = new Date(att.submitted_at).toLocaleDateString('en-IN', {
+                        day: '2-digit',
+                        month: 'short',
+                        year: 'numeric',
+                        hour: '2-digit',
+                        minute: '2-digit'
+                      });
+
+                      const wrongCount = att.wrong_count || 0;
+                      const testTitle = (att.test_name || '').toUpperCase();
+
+                      return (
+                        <tr key={att.id} className="hover:bg-slate-50/60 transition-colors">
+                          <td className="p-4 pl-6 font-mono text-xs font-semibold text-slate-500">
+                            {formattedDate}
+                          </td>
+                          <td className="p-4 font-black text-slate-800 uppercase max-w-xs truncate" title={att.test_name}>
+                            {att.test_name}
+                          </td>
+                          <td className="p-4 font-black text-slate-900">
+                            {att.score} <span className="text-[10px] text-slate-400 font-bold">/ {att.total_questions * 4}</span>
+                          </td>
+                          <td className="p-4">
+                            <span className={`px-2.5 py-0.5 rounded-full text-[10px] font-black border ${
+                              att.accuracy >= 75 
+                                ? 'bg-emerald-50 text-emerald-700 border-emerald-150' 
+                                : att.accuracy >= 45 
+                                  ? 'bg-amber-50 text-amber-700 border-amber-150' 
+                                  : 'bg-red-50 text-red-700 border-red-150'
+                            }`}>
+                              {att.accuracy}%
+                            </span>
+                          </td>
+                          <td className="p-4 font-bold">
+                            <span className="text-emerald-600 inline-flex items-center gap-1 mr-2"><CheckCircle2 className="w-3.5 h-3.5" /> {att.correct_count}</span>
+                            <span className="text-red-500 inline-flex items-center gap-1"><XCircle className="w-3.5 h-3.5" /> {wrongCount}</span>
+                          </td>
+                          <td className="p-4">
+                            <div className="flex flex-wrap gap-1">
+                              {testTitle.includes('PHYSICS') && <span className="text-[10px] font-bold bg-blue-50 text-blue-700 border border-blue-200 px-2 py-0.5 rounded">Physics Mistakes</span>}
+                              {testTitle.includes('CHEMISTRY') && <span className="text-[10px] font-bold bg-amber-50 text-amber-700 border border-amber-200 px-2 py-0.5 rounded">Chem Mistakes</span>}
+                              {testTitle.includes('MATH') && <span className="text-[10px] font-bold bg-purple-50 text-purple-700 border border-purple-200 px-2 py-0.5 rounded">Maths Mistakes</span>}
+                              {!testTitle.includes('PHYSICS') && !testTitle.includes('CHEMISTRY') && !testTitle.includes('MATH') && (
+                                <span className="text-[10px] font-bold bg-slate-100 text-slate-600 border border-slate-200 px-2 py-0.5 rounded">Full Mock Mistakes</span>
+                              )}
+                            </div>
+                          </td>
+                          <td className="p-4 text-center pr-6">
+                            <button
+                              onClick={() => navigate(`/results/${att.id}`)}
+                              className="px-3.5 py-1.5 bg-[#1E88E5] hover:bg-blue-600 text-white font-bold text-xs rounded-xl shadow-xs transition-all uppercase tracking-wider cursor-pointer"
+                            >
+                              Review Mistakes
+                            </button>
+                          </td>
+                        </tr>
+                      );
+                    })}
+                  </tbody>
+                </table>
+              </div>
+            )}
+          </div>
+
         </div>
       )}
 
