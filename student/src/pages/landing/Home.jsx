@@ -243,23 +243,12 @@ export default function Home() {
             </div>
           </div>
 
-          {/* Right Column: Hero Slider & Interactive Badge Card */}
+          {/* Right Column: Hero Slider */}
           <div className="relative">
             <div className="absolute -inset-6 bg-[#00685d]/10 blur-3xl rounded-full -z-10"></div>
             
             <div className="relative">
               <HeroSlider />
-
-              {/* Floating micro-interaction progress card */}
-              <div className="absolute -bottom-6 -left-4 sm:left-6 bg-white p-4 rounded-2xl border border-slate-200 shadow-xl hidden md:flex items-center gap-4 animate-bounce-subtle z-20">
-                <div className="w-12 h-12 bg-teal-50 rounded-2xl flex items-center justify-center text-[#00685d]">
-                  <TrendingUp className="w-6 h-6" />
-                </div>
-                <div>
-                  <p className="text-[10px] font-black text-slate-400 uppercase tracking-widest">Your Progress</p>
-                  <p className="text-sm font-black text-slate-900 uppercase tracking-wider">Top 1% Nationwide</p>
-                </div>
-              </div>
             </div>
           </div>
 
