@@ -212,7 +212,7 @@ export default function Home() {
 
             <div className="flex flex-wrap gap-4 pt-2">
               <Link 
-                to="/student"
+                to="/mock-tests"
                 className="bg-[#1E88E5] hover:bg-blue-600 text-white font-extrabold text-sm py-4 px-8 rounded-2xl shadow-lg shadow-blue-500/25 hover:shadow-blue-500/35 transition-all active:scale-95 flex items-center gap-2 uppercase tracking-wider cursor-pointer"
               >
                 <span>Start Free Mock Test</span>
@@ -305,7 +305,7 @@ export default function Home() {
               <h2 className="text-3xl sm:text-4xl font-extrabold text-[#0B1F4D] tracking-tight">Popular Exam Categories</h2>
               <p className="text-slate-600 font-medium text-base mt-2">Over 2000+ mock tests across 50+ competitive national exams.</p>
             </div>
-            <Link to="/student" className="text-[#1E88E5] hover:text-blue-700 font-bold text-sm flex items-center gap-1.5 uppercase tracking-wider hover:underline">
+            <Link to="/mock-tests" className="text-[#1E88E5] hover:text-blue-700 font-bold text-sm flex items-center gap-1.5 uppercase tracking-wider hover:underline">
               <span>View All Categories</span>
               <ArrowRight className="w-4 h-4" />
             </Link>
