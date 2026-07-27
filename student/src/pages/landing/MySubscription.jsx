@@ -20,7 +20,7 @@ const MySubscription = () => {
               <p className="text-blue-200 font-medium text-sm">Billed monthly for 1 selected category. Cancel anytime.</p>
             </div>
             <div className="text-left md:text-right text-white">
-              <div className="text-4xl font-extrabold">₹25<span className="text-lg text-blue-200 font-medium">/mo</span></div>
+              <div className="text-4xl font-extrabold">₹49<span className="text-lg text-blue-200 font-medium">/mo</span></div>
             </div>
           </div>
           

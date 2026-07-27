@@ -1180,7 +1180,7 @@ export default function StudentPortal() {
                 <h3 className="text-xl font-black text-slate-800 mt-4 uppercase">CBT Full Pass</h3>
                 
                 <div className="my-6">
-                  <span className="text-4xl font-black text-blue-700">₹25</span>
+                  <span className="text-4xl font-black text-blue-700">₹49</span>
                   <span className="text-slate-500 text-xs font-bold"> / month</span>
                 </div>
                 <p className="text-xs text-slate-500 font-semibold leading-relaxed">Simple pay-as-you-go pricing. Cancel subscription updates anytime. Payment via secure UPI.</p>
@@ -1233,7 +1233,7 @@ export default function StudentPortal() {
                 <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-2 mt-1">
                   <h4 className="text-xl font-black text-slate-800 uppercase">{selectedTestToBuy.name}</h4>
                   <span className="bg-emerald-50 text-emerald-700 border border-emerald-250 px-2.5 py-1 rounded-xl text-[10px] font-black uppercase tracking-wider shadow-sm select-none">
-                    ₹25 / Month
+                    ₹49 / Month
                   </span>
                 </div>
                 <div className="flex gap-4 mt-2 text-xs font-semibold text-slate-500">
@@ -1250,7 +1250,7 @@ export default function StudentPortal() {
                 </h5>
                 <ol className="list-decimal pl-4 text-xs font-semibold text-blue-900/95 space-y-2.5">
                   <li>
-                    Fill out the Google Registration form (Name, Phone number, and course details) and complete the ₹25 monthly fee payment.
+                    Fill out the Google Registration form (Name, Phone number, and course details) and complete the ₹49 monthly fee payment.
                   </li>
                   <li>
                     Once submitted, our Admin team will verify payment and generate your unique <strong className="underline text-blue-950">Student ID and Password</strong>.
@@ -1263,7 +1263,7 @@ export default function StudentPortal() {
 
               {/* Instructions Prompt */}
               <p className="text-xs font-semibold text-slate-500 leading-relaxed">
-                Clicking the button below will open the Google Form to complete your ₹25 registration.
+                Clicking the button below will open the Google Form to complete your ₹49 registration.
               </p>
             </div>
 
@@ -1275,7 +1275,7 @@ export default function StudentPortal() {
                 rel="noopener noreferrer"
                 className="flex-1 py-3 bg-blue-600 hover:bg-blue-700 text-white font-extrabold text-xs rounded-xl tracking-wider uppercase transition-colors shadow-md flex items-center justify-center gap-1.5 cursor-pointer text-center"
               >
-                <span>Buy Now (₹25/Month)</span>
+                <span>Buy Now (₹49/Month)</span>
                 <ExternalLink className="w-4 h-4" />
               </a>
               <button

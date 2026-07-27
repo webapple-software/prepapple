@@ -215,14 +215,14 @@ const Category = () => {
                     <div className="bg-blue-50 p-4 rounded-xl border border-blue-100 mt-4">
                       <div className="flex justify-between items-center font-bold text-slate-800 mb-2">
                         <span>Total Payable:</span>
-                        <span className="text-xl text-primary">₹25</span>
+                        <span className="text-xl text-primary">₹49</span>
                       </div>
                       <p className="text-xs text-slate-500">Auto-renews monthly. Cancel anytime.</p>
                     </div>
                   )}
 
                   <button type="button" className={`w-full font-bold text-lg py-4 rounded-xl shadow-lg transition-transform hover:-translate-y-1 mt-6 ${authMode === 'subscribe' ? 'bg-[#f97316] hover:bg-orange-600 text-white' : 'bg-primary hover:bg-blue-900 text-white'}`}>
-                    {authMode === 'subscribe' ? 'Pay ₹25 & Unlock' : 'Login Securely'}
+                    {authMode === 'subscribe' ? 'Pay ₹49 & Unlock' : 'Login Securely'}
                   </button>
                 </form>
               </div>
