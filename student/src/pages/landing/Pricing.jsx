@@ -263,35 +263,7 @@ const Pricing = () => {
 
         </div>
 
-        {/* Focused Preparation Proof Banner */}
-        <div className="bg-white rounded-3xl p-8 sm:p-10 border border-slate-200/80 shadow-md flex flex-col md:flex-row items-center justify-between gap-6">
-          <div className="space-y-2 text-center md:text-left">
-            <h3 className="text-2xl font-extrabold text-[#0B1F4D]">
-              Focused preparation, guaranteed results.
-            </h3>
-            <p className="text-sm font-medium text-slate-600 max-w-xl">
-              Join over 100,000+ students who improved their exam scores by 40% in just 3 months with PrepApple Pro.
-            </p>
-          </div>
 
-          <div className="flex items-center gap-3 flex-shrink-0 bg-blue-50/80 px-5 py-3 rounded-2xl border border-blue-100">
-            <div className="flex -space-x-2">
-              <span className="w-9 h-9 rounded-full bg-[#0B1F4D] text-white font-black text-xs flex items-center justify-center ring-2 ring-white">P</span>
-              <span className="w-9 h-9 rounded-full bg-[#1E88E5] text-white font-black text-xs flex items-center justify-center ring-2 ring-white">A</span>
-              <span className="w-9 h-9 rounded-full bg-emerald-500 text-white font-black text-xs flex items-center justify-center ring-2 ring-white">S</span>
-            </div>
-            <div className="text-left">
-              <div className="flex items-center gap-1 text-amber-500 text-xs">
-                <Star className="w-3.5 h-3.5 fill-current" />
-                <Star className="w-3.5 h-3.5 fill-current" />
-                <Star className="w-3.5 h-3.5 fill-current" />
-                <Star className="w-3.5 h-3.5 fill-current" />
-                <Star className="w-3.5 h-3.5 fill-current" />
-              </div>
-              <p className="text-xs font-black text-[#0B1F4D]">10,000+ Active Subscribers</p>
-            </div>
-          </div>
-        </div>
 
         {/* Billing FAQ Section */}
         <div className="space-y-8 max-w-3xl mx-auto pt-6">
