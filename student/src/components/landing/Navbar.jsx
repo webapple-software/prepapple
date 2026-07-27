@@ -25,7 +25,7 @@ const Navbar = () => {
           <div className="flex items-center gap-4">
             <a 
               href="/student" 
-              className="border-2 border-[#111827] text-[#111827] hover:bg-slate-50 font-bold text-xs py-2.5 px-5 rounded-xl transition-all shadow-[2px_2px_0px_#0F766E] hover:translate-x-[1px] hover:translate-y-[1px] hover:shadow-[1px_1px_0px_#0F766E] uppercase tracking-wider hidden sm:flex items-center justify-center cursor-pointer"
+              className="border-2 border-[#0B1F4D] text-[#0B1F4D] hover:bg-slate-100 font-bold text-xs py-2.5 px-5 rounded-xl transition-all uppercase tracking-wider hidden sm:flex items-center justify-center cursor-pointer shadow-sm"
             >
               Student Login
             </a>
@@ -33,9 +33,9 @@ const Navbar = () => {
               href="https://forms.gle/ML2urJTy75xXFXK18" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="bg-[#2563EB] hover:bg-blue-700 text-white font-bold text-xs py-3 px-6 rounded-xl transition-all shadow-[0_4px_12px_rgba(37,99,235,0.2)] hover:shadow-[0_6px_16px_rgba(37,99,235,0.3)] hover:-translate-y-0.5 uppercase tracking-wider flex items-center justify-center cursor-pointer"
+              className="bg-[#1E88E5] hover:bg-blue-600 text-white font-extrabold text-xs py-3 px-6 rounded-xl transition-all shadow-[0_4px_14px_rgba(30,136,229,0.35)] hover:-translate-y-0.5 uppercase tracking-wider flex items-center justify-center cursor-pointer"
             >
-              Subscribe ₹25
+              Subscribe ₹49
             </a>
           </div>
         </div>
