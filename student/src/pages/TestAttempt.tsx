@@ -547,8 +547,8 @@ export default function TestAttempt() {
       </header>
 
       {/* Subject Selector Tab Bar */}
-      <div className="bg-[#eef2f5] px-6 py-1 flex items-center justify-between border-b border-gray-250 select-none shadow-sm">
-        <div className="flex gap-1.5">
+      <div className="bg-[#eef2f5] px-4 sm:px-6 py-1 flex items-center justify-between border-b border-gray-250 select-none shadow-sm overflow-x-auto">
+        <div className="flex gap-1.5 whitespace-nowrap overflow-x-auto scrollbar-none py-1">
           {sectionsInfo.map((sec, idx) => {
             const isActive = idx === activeSectionIndex;
             return (
