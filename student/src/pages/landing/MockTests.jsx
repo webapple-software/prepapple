@@ -109,15 +109,54 @@ const sampleTestSeries = [
 ];
 
 const MockTests = () => {
+  const [apiTests, setApiTests] = useState([]);
+  const [loading, setLoading] = useState(true);
   const [selectedCategory, setSelectedCategory] = useState('All');
   const [searchQuery, setSearchQuery] = useState('');
   const [filterType, setFilterType] = useState('all'); // 'all' | 'free' | 'pro'
 
-  const categories = ['All', 'JEE', 'NEET', 'SSC', 'Railways', 'Banking', 'UPSC', 'Defence', 'MHT CET'];
+  useEffect(() => {
+    const fetchAdminTests = async () => {
+      try {
+        setLoading(true);
+        const res = await fetch('/api/tests');
+        if (res.ok) {
+          const data = await res.json();
+          if (Array.isArray(data) && data.length > 0) {
+            const formatted = data.map((t) => ({
+              id: t.id,
+              name: t.name || t.title || 'CBT Grand Mock Test',
+              category: t.category || t.exam || 'JEE',
+              subcategoryId: t.subcategory_id || '',
+              question_count: t.question_count || (t.questions ? t.questions.length : 90),
+              duration: t.duration || 180,
+              total_marks: t.total_marks || ((t.question_count || 90) * 4),
+              is_free: t.is_free === 1 || t.is_free === true,
+              difficulty: t.difficulty || 'NTA Pattern'
+            }));
+            setApiTests(formatted);
+          } else {
+            setApiTests(sampleTestSeries);
+          }
+        } else {
+          setApiTests(sampleTestSeries);
+        }
+      } catch (err) {
+        console.error('Error fetching admin mock tests:', err);
+        setApiTests(sampleTestSeries);
+      } finally {
+        setLoading(false);
+      }
+    };
+    fetchAdminTests();
+  }, []);
 
-  const filteredTests = sampleTestSeries.filter(test => {
+  const allTests = apiTests.length > 0 ? apiTests : sampleTestSeries;
+  const categories = ['All', ...Array.from(new Set(allTests.map(t => t.category))).filter(Boolean)];
+
+  const filteredTests = allTests.filter(test => {
     const matchesCategory = selectedCategory === 'All' || test.category.toLowerCase() === selectedCategory.toLowerCase();
-    const matchesSearch = test.name.toLowerCase().includes(searchQuery.toLowerCase()) || test.category.toLowerCase().includes(searchQuery.toLowerCase());
+    const matchesSearch = (test.name || '').toLowerCase().includes(searchQuery.toLowerCase()) || (test.category || '').toLowerCase().includes(searchQuery.toLowerCase());
     const matchesFilter = filterType === 'all' || (filterType === 'free' && test.is_free) || (filterType === 'pro' && !test.is_free);
     return matchesCategory && matchesSearch && matchesFilter;
   });
