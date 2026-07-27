@@ -280,7 +280,7 @@ export default function StudentPortal() {
               src="/assets/logo-prepapple.png" 
               alt="PrepApple Logo" 
               onClick={() => isSidebarCollapsed && setIsSidebarCollapsed(false)}
-              className={`h-9 w-auto object-contain flex-shrink-0 bg-white/10 p-1 rounded-2xl ${isSidebarCollapsed ? 'cursor-pointer hover:bg-white/20' : ''}`}
+              className={`h-10 w-10 object-cover flex-shrink-0 rounded-full border border-white/20 shadow-md ${isSidebarCollapsed ? 'cursor-pointer hover:scale-105 transition-transform' : ''}`}
               title={isSidebarCollapsed ? "Expand Sidebar" : undefined}
               onError={(e: any) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }}
             />

@@ -15,7 +15,7 @@ const Navbar = () => {
             <img 
               src="/assets/logo-prepapple.png" 
               alt="PrepApple Logo" 
-              className="h-11 sm:h-12 w-auto object-contain rounded-2xl mix-blend-multiply" 
+              className="h-11 sm:h-12 w-11 sm:w-12 object-cover rounded-full mix-blend-multiply border border-slate-200/50 shadow-xs" 
               onError={(e) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }} 
             />
             <div className="flex flex-col">
