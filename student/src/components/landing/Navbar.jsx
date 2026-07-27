@@ -17,9 +17,15 @@ const Navbar = () => {
             </div>
           </Link>
           
-          <nav className="hidden md:flex items-center gap-8 font-medium text-slate-600">
-            <Link to="/" className="hover:text-accent-start transition-colors">Home</Link>
-            <Link to="/about" className="hover:text-accent-start transition-colors">About Us</Link>
+          <nav className="hidden md:flex items-center gap-8 font-bold text-sm text-slate-700">
+            <Link to="/" className="hover:text-[#1E88E5] transition-colors">Home</Link>
+            <Link to="/mock-tests" className="hover:text-[#1E88E5] transition-colors">Mock Tests</Link>
+            <Link to="/pricing" className="hover:text-[#1E88E5] transition-colors flex items-center gap-1">
+              <span>Pricing</span>
+              <span className="bg-amber-100 text-amber-800 text-[10px] px-1.5 py-0.5 rounded font-extrabold uppercase">₹49</span>
+            </Link>
+            <Link to="/about" className="hover:text-[#1E88E5] transition-colors">About Us</Link>
+            <Link to="/contact" className="hover:text-[#1E88E5] transition-colors">Contact</Link>
           </nav>
           
           <div className="flex items-center gap-4">

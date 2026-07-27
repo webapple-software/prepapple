@@ -18,6 +18,8 @@ import ContactUs from './pages/landing/ContactUs';
 import FAQs from './pages/landing/FAQs';
 import Terms from './pages/landing/Terms';
 import Privacy from './pages/landing/Privacy';
+import Pricing from './pages/landing/Pricing';
+import MockTests from './pages/landing/MockTests';
 import LandingNavbar from './components/landing/Navbar';
 import LandingFooter from './components/landing/Footer';
 
@@ -92,6 +94,8 @@ export default function App() {
         <Routes>
           {/* Landing page routes (wrapped in LandingLayout) */}
           <Route path="/" element={<LandingLayout><Home /></LandingLayout>} />
+          <Route path="/pricing" element={<LandingLayout><Pricing /></LandingLayout>} />
+          <Route path="/mock-tests" element={<LandingLayout><MockTests /></LandingLayout>} />
           <Route path="/about" element={<LandingLayout><About /></LandingLayout>} />
           <Route path="/contact" element={<LandingLayout><ContactUs /></LandingLayout>} />
           <Route path="/faqs" element={<LandingLayout><FAQs /></LandingLayout>} />
