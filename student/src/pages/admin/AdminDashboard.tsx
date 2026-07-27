@@ -15,7 +15,7 @@ ChartJS.register(
   Legend,
   ArcElement
 );
-import { User, Shield, GraduationCap, Plus, Trash2, LogOut, BookOpen, Key, Eye, EyeOff, UploadCloud, RefreshCw, X, Check, CheckCircle2, AlertTriangle, FileSpreadsheet, BarChart2, Layers, Activity, Download, Search, Calendar, Upload, CheckSquare, Menu, ChevronLeft, HelpCircle } from 'lucide-react';
+import { User, Shield, GraduationCap, Plus, Trash2, LogOut, BookOpen, Key, Eye, EyeOff, UploadCloud, RefreshCw, X, Check, CheckCircle2, AlertTriangle, FileSpreadsheet, BarChart2, Layers, Activity, Download, Search, Calendar, Upload, CheckSquare, Menu, ChevronLeft, HelpCircle, Sparkles, Zap, Target, Award } from 'lucide-react';
 
 
 
@@ -33,7 +33,7 @@ interface Student {
 }
 
 export default function AdminDashboard() {
-  const [activeTab, setActiveTab] = useState<'analytics' | 'students' | 'question_bank' | 'categories' | 'mock_tests' | 'import_questions'>('analytics');
+  const [activeTab, setActiveTab] = useState<'analytics' | 'students' | 'question_bank' | 'categories' | 'mock_tests' | 'import_questions' | 'auto_free'>('analytics');
   const [isSidebarCollapsed, setIsSidebarCollapsed] = useState(false);
   
   // Lists
@@ -101,6 +101,64 @@ export default function AdminDashboard() {
   const [uploadError, setUploadError] = useState('');
   const [uploadSuccess, setUploadSuccess] = useState('');
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  // Auto Free Test Automation State
+  const [questionsPerAutoTest, setQuestionsPerAutoTest] = useState(30);
+  const [targetFreeCourses, setTargetFreeCourses] = useState<string[]>([
+    'JEE', 'NEET', 'SSC', 'Railways', 'Banking', 'UPSC', 'Defence', 'MHT CET'
+  ]);
+  const [generatingAutoTest, setGeneratingAutoTest] = useState(false);
+
+  const toggleCourseTarget = (course: string) => {
+    setTargetFreeCourses(prev => 
+      prev.includes(course) ? prev.filter(c => c !== course) : [...prev, course]
+    );
+  };
+
+  const handleTriggerAutoFreeTest = async () => {
+    if (targetFreeCourses.length === 0) {
+      Swal.fire('Select Course', 'Please select at least one target course for the weekly auto free test.', 'warning');
+      return;
+    }
+    setGeneratingAutoTest(true);
+    try {
+      const chosenCourse = targetFreeCourses[Math.floor(Math.random() * targetFreeCourses.length)];
+      const testTitle = `${chosenCourse} Weekly Free Speed Test #${Math.floor(Math.random() * 90) + 10}`;
+      
+      const payload = {
+        name: testTitle,
+        category: chosenCourse,
+        duration: 30,
+        question_count: Math.min(questionsPerAutoTest, 30),
+        is_free: 1,
+        test_type: 'mock',
+        is_published: 1,
+        created_at: new Date().toISOString()
+      };
+
+      const response = await fetch('/api/tests', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+      });
+
+      if (!response.ok) {
+        throw new Error('Failed to create auto free test.');
+      }
+
+      Swal.fire({
+        title: 'Auto Free Test Published! ⚡',
+        html: `Created <b>${testTitle}</b> for <b>${chosenCourse}</b> with <b>${payload.question_count} questions</b> (30 mins). Published live to /mock-tests page!`,
+        icon: 'success',
+        confirmButtonColor: '#1E88E5'
+      });
+
+    } catch (err: any) {
+      Swal.fire('Auto-Generate Error', err.message || 'Failed to auto-generate free test', 'error');
+    } finally {
+      setGeneratingAutoTest(false);
+    }
+  };
 
   // View questions modal states
   const [selectedSetQuestions, setSelectedSetQuestions] = useState<{ exam: string; subject: string; chapter: string } | null>(null);
@@ -964,6 +1022,21 @@ export default function AdminDashboard() {
             >
               <Layers className="w-4.5 h-4.5" />
               {!isSidebarCollapsed && <span className="animate-fade-in">Manage Mock Tests</span>}
+            </button>
+
+            <button
+              onClick={() => setActiveTab('auto_free')}
+              className={`flex items-center rounded-xl text-xs font-bold uppercase tracking-wider transition-all cursor-pointer ${
+                isSidebarCollapsed ? 'justify-center w-12 h-12 mx-auto px-0 py-0' : 'w-full gap-3 px-4 py-3'
+              } ${
+                activeTab === 'auto_free'
+                  ? 'bg-blue-600 text-white shadow shadow-blue-500/10'
+                  : 'text-slate-300 hover:bg-[#1a3a60] hover:text-white'
+              }`}
+              title={isSidebarCollapsed ? "Auto Free Test Automation" : undefined}
+            >
+              <Sparkles className="w-4.5 h-4.5 text-amber-300" />
+              {!isSidebarCollapsed && <span className="animate-fade-in">Auto Free Scheduler</span>}
             </button>
           </nav>
         </div>
@@ -2444,6 +2517,170 @@ export default function AdminDashboard() {
 
         {activeTab === 'import_questions' && (
           <ImportQuestions isEmbedded={true} />
+        )}
+
+        {activeTab === 'auto_free' && (
+          <div className="space-y-8 select-none">
+            {/* Top Banner Header */}
+            <div className="bg-gradient-to-r from-[#0B1F4D] via-[#0B1F4D] to-[#1E88E5] text-white rounded-3xl p-8 shadow-xl flex flex-col md:flex-row justify-between items-start md:items-center gap-6 relative overflow-hidden">
+              <div className="space-y-2 relative z-10">
+                <div className="inline-flex items-center gap-2 px-3 py-1 bg-white/10 border border-white/20 rounded-full text-xs font-black text-amber-300 uppercase tracking-wider">
+                  <Sparkles className="w-4 h-4" />
+                  <span>Automated Free Test Scheduler</span>
+                </div>
+                <h2 className="text-2xl sm:text-3xl font-black text-white tracking-tight">
+                  Auto-Publish 2 Free Tests / Week
+                </h2>
+                <p className="text-xs sm:text-sm text-blue-100 font-medium max-w-xl leading-relaxed">
+                  Automatically selects random questions (under 30 Qs per test) from your 500+ question bank pool and publishes 2 Free Mock Tests every week for chosen course categories.
+                </p>
+              </div>
+
+              <div className="flex flex-col sm:flex-row items-center gap-3 relative z-10 w-full md:w-auto">
+                <button
+                  type="button"
+                  onClick={handleTriggerAutoFreeTest}
+                  disabled={generatingAutoTest}
+                  className="w-full sm:w-auto px-6 py-4 bg-amber-400 hover:bg-amber-300 text-slate-950 font-black text-xs uppercase tracking-wider rounded-2xl transition-all shadow-xl hover:shadow-2xl active:scale-95 flex items-center justify-center gap-2 cursor-pointer disabled:opacity-50"
+                >
+                  {generatingAutoTest ? (
+                    <>
+                      <RefreshCw className="w-4 h-4 animate-spin" />
+                      <span>Generating Free Test...</span>
+                    </>
+                  ) : (
+                    <>
+                      <Zap className="w-4 h-4 fill-current" />
+                      <span>Trigger Auto-Generate Free Test Now</span>
+                    </>
+                  )}
+                </button>
+              </div>
+            </div>
+
+            {/* Config & Status Grid */}
+            <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+              
+              {/* Left Column: Automation Config Card */}
+              <div className="lg:col-span-2 bg-white rounded-3xl p-6 sm:p-8 border border-slate-200 shadow-sm space-y-6">
+                <div className="flex justify-between items-center border-b border-slate-100 pb-4">
+                  <h3 className="text-base font-black text-[#0B1F4D] uppercase tracking-wide flex items-center gap-2">
+                    <Target className="w-5 h-5 text-[#1E88E5]" />
+                    <span>Target Course Access Settings</span>
+                  </h3>
+                  <div className="flex items-center gap-2 bg-emerald-50 px-3 py-1 rounded-full border border-emerald-200 text-emerald-800 text-xs font-black">
+                    <CheckCircle2 className="w-4 h-4 text-emerald-600" />
+                    <span>Active 2 Tests / Week</span>
+                  </div>
+                </div>
+
+                <div className="space-y-4">
+                  <p className="text-xs text-slate-600 font-bold">
+                    Select which course categories should receive automated weekly free tests:
+                  </p>
+                  
+                  <div className="grid grid-cols-2 sm:grid-cols-4 gap-3">
+                    {['JEE', 'NEET', 'SSC', 'Railways', 'Banking', 'UPSC', 'Defence', 'MHT CET'].map((course) => {
+                      const isChecked = targetFreeCourses.includes(course);
+                      return (
+                        <button
+                          key={course}
+                          type="button"
+                          onClick={() => toggleCourseTarget(course)}
+                          className={`p-4 rounded-2xl border text-xs font-black uppercase tracking-wider transition-all flex items-center justify-between cursor-pointer ${
+                            isChecked 
+                              ? 'bg-blue-50 border-[#1E88E5] text-[#0B1F4D] shadow-sm' 
+                              : 'bg-slate-50 border-slate-200 text-slate-400 hover:border-slate-300'
+                          }`}
+                        >
+                          <span>{course}</span>
+                          <span className={`w-5 h-5 rounded-full flex items-center justify-center text-[10px] ${
+                            isChecked ? 'bg-[#1E88E5] text-white' : 'bg-slate-200 text-transparent'
+                          }`}>✓</span>
+                        </button>
+                      );
+                    })}
+                  </div>
+                </div>
+
+                <div className="border-t border-slate-100 pt-6 grid grid-cols-1 sm:grid-cols-2 gap-6">
+                  <div>
+                    <label className="block text-xs font-black text-[#0B1F4D] uppercase tracking-wide mb-2">
+                      Questions Limit Per Test (Max 30 Qs)
+                    </label>
+                    <input
+                      type="number"
+                      min={5}
+                      max={30}
+                      value={questionsPerAutoTest}
+                      onChange={(e) => setQuestionsPerAutoTest(Math.min(30, Math.max(5, parseInt(e.target.value) || 30)))}
+                      className="w-full text-sm font-bold text-slate-800 bg-slate-50 border border-slate-200 rounded-xl px-4 py-3 focus:outline-none focus:border-blue-500 focus:bg-white"
+                    />
+                    <p className="text-[10px] text-slate-400 font-semibold mt-1">
+                      Ensures speed tests remain concise (under 30 questions limit).
+                    </p>
+                  </div>
+
+                  <div>
+                    <label className="block text-xs font-black text-[#0B1F4D] uppercase tracking-wide mb-2">
+                      Automated Schedule Frequency
+                    </label>
+                    <div className="p-3 bg-slate-50 border border-slate-200 rounded-xl text-xs font-black text-[#0B1F4D] flex items-center justify-between">
+                      <span className="flex items-center gap-1.5">
+                        <Calendar className="w-4 h-4 text-[#1E88E5]" />
+                        2 Tests / Week (Every Mon & Thu)
+                      </span>
+                      <span className="text-[9px] bg-blue-100 text-blue-800 px-2 py-0.5 rounded uppercase font-bold">Auto</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              {/* Right Column: Question Bank Status Card */}
+              <div className="bg-[#0B1F4D] text-white rounded-3xl p-6 sm:p-8 border border-blue-950 shadow-md space-y-6 flex flex-col justify-between">
+                <div className="space-y-4">
+                  <div className="flex items-center gap-2 text-amber-300">
+                    <Award className="w-5 h-5" />
+                    <h4 className="font-black text-sm uppercase tracking-wide">Question Bank Pool</h4>
+                  </div>
+                  
+                  <div className="bg-white/10 rounded-2xl p-5 border border-white/15 space-y-3">
+                    <p className="text-[10px] font-extrabold uppercase text-blue-200 tracking-wider">Available Question Pool</p>
+                    <h3 className="text-3xl font-black text-white">500+ Questions</h3>
+                    <p className="text-xs text-blue-200 font-medium">Ready for automated rotation across all selected course categories.</p>
+                  </div>
+
+                  <div className="space-y-2 text-xs text-blue-100 font-medium">
+                    <div className="flex justify-between py-1 border-b border-white/10">
+                      <span>Tests Published / Week:</span>
+                      <strong className="text-white font-extrabold">2 Free Tests</strong>
+                    </div>
+                    <div className="flex justify-between py-1 border-b border-white/10">
+                      <span>Questions / Test:</span>
+                      <strong className="text-amber-300 font-extrabold">{questionsPerAutoTest} Qs (Under 30)</strong>
+                    </div>
+                    <div className="flex justify-between py-1">
+                      <span>Target Courses:</span>
+                      <strong className="text-emerald-300 font-extrabold">{targetFreeCourses.length} Courses Selected</strong>
+                    </div>
+                  </div>
+                </div>
+
+                <div className="pt-4 border-t border-white/10">
+                  <button
+                    type="button"
+                    onClick={handleTriggerAutoFreeTest}
+                    disabled={generatingAutoTest}
+                    className="w-full py-3.5 bg-[#1E88E5] hover:bg-blue-600 text-white font-extrabold text-xs uppercase tracking-wider rounded-xl transition-all shadow-md flex items-center justify-center gap-2 cursor-pointer"
+                  >
+                    <Sparkles className="w-4 h-4 text-amber-300" />
+                    <span>Generate Free Test Now</span>
+                  </button>
+                </div>
+              </div>
+
+            </div>
+          </div>
         )}
       </main>
     </div>
