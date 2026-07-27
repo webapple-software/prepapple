@@ -575,15 +575,33 @@ export default function Home() {
 
       {/* CTA Section */}
       <section className="px-4 sm:px-6 lg:px-8 pb-20">
-        <div className="max-w-7xl mx-auto bg-[#0B1F4D] rounded-[3rem] p-10 md:p-20 text-center relative overflow-hidden shadow-2xl text-white">
+        <div className="max-w-7xl mx-auto bg-[#0B1F4D] rounded-[3rem] p-10 md:p-20 text-center relative overflow-hidden shadow-2xl text-white group">
+          {/* Background Image Layer */}
+          <img 
+            src="/assets/slider_banner_1.jpg" 
+            alt="PrepApple Banner Background" 
+            className="absolute inset-0 w-full h-full object-cover opacity-25 mix-blend-luminosity group-hover:scale-105 transition-transform duration-700 pointer-events-none" 
+          />
+          <div className="absolute inset-0 bg-gradient-to-r from-[#0B1F4D]/90 via-[#0B1F4D]/80 to-[#0B1F4D]/90 pointer-events-none" />
+
+          {/* Radial Glows */}
           <div className="absolute top-0 right-0 w-96 h-96 bg-[#1E88E5]/30 rounded-full blur-3xl -mr-48 -mt-48 pointer-events-none"></div>
           <div className="absolute bottom-0 left-0 w-96 h-96 bg-blue-600/30 rounded-full blur-3xl -ml-48 -mb-48 pointer-events-none"></div>
           
           <div className="relative z-10 space-y-6">
-            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">Ready to reach your target?</h2>
+            <div className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white/10 border border-white/20 text-blue-200 font-extrabold text-xs uppercase tracking-wider">
+              <Sparkles className="w-3.5 h-3.5 text-amber-300" />
+              <span>PRACTICE TODAY • EXCEL TOMORROW</span>
+            </div>
+            <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-white">Welcome to <span className="text-[#1E88E5]">PrepApple</span></h2>
             <p className="text-blue-100 font-medium text-base sm:text-xl max-w-2xl mx-auto leading-relaxed">
-              Join thousands of successful candidates. Start your subscription today for just <span className="font-black text-white bg-white/20 px-3 py-1 rounded-xl">₹49/month</span> and experience the difference precision makes.
+              Your trusted Computer Based Test (CBT) portal for exam preparation. Join over 200+ students monthly and learn from 8+ trusted teachers to ace your competitive exams!
             </p>
+            <div className="pt-1">
+              <span className="bg-black/40 border border-white/15 px-4 py-2 rounded-xl text-xs font-bold text-blue-200 inline-block backdrop-blur-md">
+                A proud product of <strong className="text-white font-extrabold">WebApple Software</strong>
+              </span>
+            </div>
             <div className="pt-4 flex flex-col sm:flex-row justify-center gap-4">
               <a 
                 href="https://forms.gle/ML2urJTy75xXFXK18"
