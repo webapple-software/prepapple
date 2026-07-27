@@ -1,6 +1,6 @@
 import { useState, useEffect, useRef } from 'react';
 import Swal from 'sweetalert2';
-import { useParams, useNavigate, useLocation } from 'react-router-dom';
+import { useParams, useNavigate, useLocation, Navigate } from 'react-router-dom';
 import { ChevronLeft, Atom, FlaskConical, Calculator, Bookmark, Dna } from 'lucide-react';
 
 interface Question {
@@ -90,14 +90,14 @@ export default function TestAttempt() {
           if (guestAttempts.length >= 1) {
             Swal.fire({
               title: 'Free Limit Reached!',
-              text: 'Guests are only allowed to attempt 1 free test! Please log in or buy a monthly subscription for ₹25 to get unlimited access.',
+              text: 'Guests are only allowed to attempt 1 free test! Please log in or buy a monthly subscription for ₹49 to get unlimited access.',
               icon: 'warning',
-              confirmButtonText: 'Go to Home / Login',
-              confirmButtonColor: '#3b82f6',
+              confirmButtonText: 'Go to Student Login',
+              confirmButtonColor: '#1E88E5',
               allowOutsideClick: false,
               allowEscapeKey: false
             }).then(() => {
-              navigate('/');
+              navigate('/login');
             });
             return;
           } else {
@@ -503,18 +503,7 @@ export default function TestAttempt() {
   }
 
   if (error || !test) {
-    return (
-      <div className="max-w-md mx-auto mt-20 bg-white p-6 rounded-2xl border border-red-100 text-center shadow-lg">
-        <h3 className="text-xl font-bold text-red-600 mb-2">Error Loading Test</h3>
-        <p className="text-gray-600 mb-6">{error || 'Invalid test details'}</p>
-        <button
-          onClick={() => navigate('/')}
-          className="bg-blue-600 text-white font-semibold py-2 px-6 rounded-xl hover:bg-blue-700 transition-colors"
-        >
-          Return Home
-        </button>
-      </div>
-    );
+    return <Navigate to="/login" replace />;
   }
 
   const currentQuestion = test.questions[currentIndex];
