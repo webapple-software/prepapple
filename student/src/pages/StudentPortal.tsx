@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { Clock, ChevronLeft, ChevronRight, User, Star, Layers, FileText, X, ExternalLink, ShieldCheck, Lock, CheckCircle2, LayoutDashboard, BookOpen, FileSpreadsheet, Activity, LogOut, CreditCard, ArrowRight, Menu } from 'lucide-react';
+import { Clock, ChevronLeft, ChevronRight, User, Star, Layers, FileText, X, ExternalLink, ShieldCheck, Lock, CheckCircle2, LayoutDashboard, BookOpen, FileSpreadsheet, Activity, LogOut, CreditCard, ArrowRight, Menu, AlertTriangle, Trophy, Sparkles, XCircle } from 'lucide-react';
 import { Chart as ChartJS, CategoryScale, LinearScale, PointElement, LineElement, BarElement, Title as ChartTitle, Tooltip, Legend, ArcElement } from 'chart.js';
 import { Line, Doughnut, Bar } from 'react-chartjs-2';
 
@@ -487,7 +487,9 @@ export default function StudentPortal() {
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 {weakestSubject && weakestSubject.accuracy !== null && (
                   <div className="bg-rose-50 border border-rose-100 rounded-3xl p-6 shadow-sm flex items-start gap-4">
-                    <span className="text-3xl">⚠️</span>
+                    <div className="w-10 h-10 rounded-2xl bg-rose-100 text-rose-600 flex items-center justify-center flex-shrink-0">
+                      <AlertTriangle className="w-5 h-5" />
+                    </div>
                     <div>
                       <h4 className="font-black text-sm text-rose-800 uppercase tracking-tight">Improvement Area Recommendation</h4>
                       <p className="text-xs text-rose-700/90 font-semibold mt-1 leading-relaxed">
@@ -500,7 +502,9 @@ export default function StudentPortal() {
 
                 {strongestSubject && strongestSubject.accuracy !== null && strongestSubject.accuracy >= 65 ? (
                   <div className="bg-emerald-50 border border-emerald-100 rounded-3xl p-6 shadow-sm flex items-start gap-4">
-                    <span className="text-3xl">🎉</span>
+                    <div className="w-10 h-10 rounded-2xl bg-emerald-100 text-emerald-600 flex items-center justify-center flex-shrink-0">
+                      <Trophy className="w-5 h-5" />
+                    </div>
                     <div>
                       <h4 className="font-black text-sm text-emerald-800 uppercase tracking-tight">Strong Subject Highlight</h4>
                       <p className="text-xs text-emerald-700/90 font-semibold mt-1 leading-relaxed">
@@ -510,7 +514,9 @@ export default function StudentPortal() {
                   </div>
                 ) : (
                   <div className="bg-blue-50 border border-blue-100 rounded-3xl p-6 shadow-sm flex items-start gap-4">
-                    <span className="text-3xl">💡</span>
+                    <div className="w-10 h-10 rounded-2xl bg-blue-100 text-blue-600 flex items-center justify-center flex-shrink-0">
+                      <Sparkles className="w-5 h-5" />
+                    </div>
                     <div>
                       <h4 className="font-black text-sm text-blue-800 uppercase tracking-tight">Study Tip</h4>
                       <p className="text-xs text-blue-700/90 font-semibold mt-1 leading-relaxed">
@@ -996,7 +1002,7 @@ export default function StudentPortal() {
               {/* Instructions Yellow Panel */}
               <div className="bg-amber-50/75 border border-amber-200/60 p-4 rounded-xl text-xs text-amber-800 mx-6 mt-6">
                 <p className="font-bold flex items-center gap-1.5 mb-2">
-                  <span>⚠️</span> Before you begin:
+                  <AlertTriangle className="w-4 h-4 text-amber-600 flex-shrink-0" /> Before you begin:
                 </p>
                 <ul className="space-y-1.5 pl-3 font-semibold text-[11px] text-amber-700/90">
                   <li className="flex items-start gap-2">
@@ -1100,7 +1106,7 @@ export default function StudentPortal() {
                             </span>
                           </td>
                           <td className="p-4 text-xs font-semibold text-slate-500">
-                            <span className="text-emerald-600">{attempt.correct_count} ✔</span> • <span className="text-red-500">{attempt.wrong_count} ✖</span>
+                            <span className="text-emerald-600 inline-flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> {attempt.correct_count}</span> • <span className="text-red-500 inline-flex items-center gap-1"><XCircle className="w-3.5 h-3.5" /> {attempt.wrong_count}</span>
                           </td>
                           <td className="p-4 text-slate-600 font-mono text-xs">
                             {durationMins > 0 ? `${durationMins}m ${durationSecs}s` : `${durationSecs}s`}
@@ -1145,19 +1151,19 @@ export default function StudentPortal() {
                 <h4 className="font-extrabold text-sm text-slate-700 uppercase tracking-wider mb-4">What's included in Premium</h4>
                 <ul className="space-y-3 text-xs font-semibold text-slate-600">
                   <li className="flex items-center gap-2">
-                    <span className="text-emerald-500 font-bold">✓</span>
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
                     <span>Unlimited attempts for all Mock Tests</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-emerald-500 font-bold">✓</span>
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
                     <span>Access to Chapter-wise Sectional & Topic Tests</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-emerald-500 font-bold">✓</span>
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
                     <span>Real-time score analysis & detailed review guides</span>
                   </li>
                   <li className="flex items-center gap-2">
-                    <span className="text-emerald-500 font-bold">✓</span>
+                    <CheckCircle2 className="w-4 h-4 text-emerald-500 flex-shrink-0" />
                     <span>Compare rankings against category students</span>
                   </li>
                 </ul>
@@ -1166,8 +1172,8 @@ export default function StudentPortal() {
               <div className="mt-8 border-t border-slate-200 pt-4">
                 <div className="flex justify-between items-center text-xs font-bold text-slate-500">
                   <span>Active Subscription:</span>
-                  <span className={isSubscribed ? "text-emerald-600 font-black flex items-center gap-1" : "text-amber-500 font-black"}>
-                    {isSubscribed ? "✓ ACTIVE PREMIUM" : "✕ NOT SUBSCRIBED"}
+                  <span className={isSubscribed ? "text-emerald-600 font-black flex items-center gap-1" : "text-amber-500 font-black flex items-center gap-1"}>
+                    {isSubscribed ? <><Star className="w-3.5 h-3.5 fill-current text-amber-400" /> ACTIVE PREMIUM</> : <><Lock className="w-3.5 h-3.5 text-slate-400" /> NOT SUBSCRIBED</>}
                   </span>
                 </div>
               </div>

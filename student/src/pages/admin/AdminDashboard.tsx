@@ -15,7 +15,7 @@ ChartJS.register(
   Legend,
   ArcElement
 );
-import { User, Shield, GraduationCap, Plus, Trash2, LogOut, BookOpen, Key, Eye, EyeOff, UploadCloud, RefreshCw, X, Check, CheckCircle2, AlertTriangle, FileSpreadsheet, BarChart2, Layers, Activity, Download, Search, Calendar, Upload, CheckSquare, Menu, ChevronLeft } from 'lucide-react';
+import { User, Shield, GraduationCap, Plus, Trash2, LogOut, BookOpen, Key, Eye, EyeOff, UploadCloud, RefreshCw, X, Check, CheckCircle2, AlertTriangle, FileSpreadsheet, BarChart2, Layers, Activity, Download, Search, Calendar, Upload, CheckSquare, Menu, ChevronLeft, HelpCircle } from 'lucide-react';
 
 
 
@@ -2859,7 +2859,7 @@ export default function AdminDashboard() {
                       {q.explanation && (
                         <div className="bg-blue-50/40 border border-blue-100 rounded-xl p-3.5 text-xs text-slate-700 font-medium whitespace-pre-wrap leading-relaxed">
                           <p className="font-extrabold text-[#0f294a] text-[10px] uppercase tracking-wide mb-1 flex items-center gap-1">
-                            <span>💡</span> Explanation
+                            <HelpCircle className="w-3.5 h-3.5 text-[#1E88E5]" /> Explanation
                           </p>
                           {q.explanation}
                         </div>

@@ -285,9 +285,9 @@ export default function ResultReview() {
                           <div className="flex-1">
                             <p>{opt}</p>
                             <div className="flex items-center gap-1.5 mt-2.5 text-[10px] font-bold">
-                              {isCorrectChoice && <span className="text-green-700">✓ CORRECT ANSWER</span>}
+                              {isCorrectChoice && <span className="text-green-700 flex items-center gap-1"><CheckCircle2 className="w-3.5 h-3.5" /> CORRECT ANSWER</span>}
                               {isStudentChoice && (
-                                <span className={isCorrectChoice ? 'text-green-700' : 'text-red-700'}>
+                                <span className={isCorrectChoice ? 'text-green-700 font-extrabold' : 'text-red-700 font-extrabold'}>
                                   ● YOUR CHOICE
                                 </span>
                               )}
