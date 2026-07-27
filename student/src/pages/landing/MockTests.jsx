@@ -260,7 +260,7 @@ const MockTests = () => {
               <div className="pt-6 mt-4 border-t border-slate-100 flex items-center gap-3">
                 {test.is_free ? (
                   <Link
-                    to={`/test/${test.id}/instructions`}
+                    to="/login"
                     className="w-full py-3 bg-[#0B1F4D] hover:bg-slate-900 text-white font-extrabold text-xs rounded-xl uppercase tracking-wider transition-all flex items-center justify-center gap-2 shadow-md"
                   >
                     <Play className="w-3.5 h-3.5 fill-current" />

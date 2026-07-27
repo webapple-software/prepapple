@@ -152,9 +152,9 @@ const Category = () => {
               
               {/* Only the first test is free, the rest are locked */}
               {(test.is_free === 1 || index === 0) ? (
-                <a href={`/attempt/${test.id}`} className="btn-primary py-3 px-8 whitespace-nowrap text-center font-bold">
+                <Link to="/login" className="btn-primary py-3 px-8 whitespace-nowrap text-center font-bold">
                   Start Free Test
-                </a>
+                </Link>
               ) : (
                 <button onClick={() => setShowAuthForm(true)} className="bg-slate-100 text-slate-600 hover:bg-slate-200 border border-slate-300 py-3 px-8 rounded-xl font-bold transition-colors flex items-center justify-center gap-2">
                   <Lock className="w-4 h-4" /> Locked
