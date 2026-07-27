@@ -267,14 +267,14 @@ export default function StudentPortal() {
 
       {/* Sidebar Panel */}
       <aside 
-        className={`bg-[#0c1e38] text-white flex flex-col transition-all duration-300 z-40 select-none ${
+        className={`bg-[#0B1F4D] text-white flex flex-col transition-all duration-300 z-40 select-none border-r border-[#1E88E5]/20 ${
           isSidebarCollapsed 
             ? 'w-0 md:w-20 -translate-x-full md:translate-x-0 overflow-hidden' 
             : 'w-64 fixed md:relative inset-y-0 left-0 shadow-2xl md:shadow-none'
         }`}
       >
         {/* Brand Header & Toggle */}
-        <div className={`p-4 border-b border-blue-950 flex items-center justify-between gap-3 ${isSidebarCollapsed ? 'justify-center' : ''}`}>
+        <div className={`p-4 border-b border-white/10 flex items-center justify-between gap-3 ${isSidebarCollapsed ? 'justify-center' : ''}`}>
           <div className="flex items-center gap-3">
             <img 
               src="/assets/logo-prepapple.png" 
@@ -286,7 +286,7 @@ export default function StudentPortal() {
             />
             {!isSidebarCollapsed && (
               <div className="animate-fade-in">
-                <h2 className="font-black text-sm tracking-widest text-white uppercase leading-none">Prep<span className="text-sky-400">Apple</span></h2>
+                <h2 className="font-black text-sm tracking-widest text-white uppercase leading-none">Prep<span className="text-[#1E88E5]">Apple</span></h2>
                 <span className="text-[9px] font-black text-emerald-400 uppercase tracking-widest block mt-1">CBT Prep Portal</span>
               </div>
             )}

@@ -512,8 +512,8 @@ export default function TestAttempt() {
 
   return (
     <div className="min-h-screen bg-[#f1f3f6] flex flex-col unselectable select-none">
-      {/* Top Banner (JEE Advanced Mock Style) */}
-      <header className="bg-[#0f294a] text-white px-6 py-3 flex justify-between items-center shadow-md border-b border-blue-950">
+      {/* Top Banner (PrepApple CBT Style) */}
+      <header className="bg-[#0B1F4D] text-white px-6 py-3 flex justify-between items-center shadow-md border-b border-[#1E88E5]/20">
         <div className="flex items-center gap-3">
           <div className="bg-blue-600/35 p-1.5 rounded-lg border border-blue-400/30 text-[#fbbf24] animate-pulse flex items-center justify-center">
             <Atom className="w-5.5 h-5.5" />

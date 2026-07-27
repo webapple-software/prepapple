@@ -900,23 +900,23 @@ export default function AdminDashboard() {
     <div className="min-h-screen bg-slate-50 text-slate-800 flex font-sans select-none">
       
       {/* Sidebar Navigation */}
-      <aside className={`bg-[#0f294a] text-white flex flex-col justify-between border-r border-blue-950 flex-shrink-0 select-none transition-all duration-300 ${isSidebarCollapsed ? 'w-20' : 'w-72'}`}>
+      <aside className={`bg-[#0B1F4D] text-white flex flex-col justify-between border-r border-[#1E88E5]/20 flex-shrink-0 select-none transition-all duration-300 ${isSidebarCollapsed ? 'w-20' : 'w-72'}`}>
         <div>
           {/* Logo Brand & Collapse Toggle */}
-          <div className={`px-4 py-6 border-b border-blue-950 flex items-center justify-between gap-3 ${isSidebarCollapsed ? 'justify-center' : ''}`}>
+          <div className={`px-4 py-6 border-b border-white/10 flex items-center justify-between gap-3 ${isSidebarCollapsed ? 'justify-center' : ''}`}>
             <div className="flex items-center gap-3">
               <img 
                 src="/assets/logo-prepapple.png" 
                 alt="PrepApple Logo" 
                 onClick={() => isSidebarCollapsed && setIsSidebarCollapsed(false)}
-                className={`h-9 w-auto object-contain flex-shrink-0 bg-white/10 p-1 rounded-2xl border border-white/10 ${isSidebarCollapsed ? 'cursor-pointer hover:bg-white/20' : ''}`}
+                className={`h-10 w-10 object-cover flex-shrink-0 rounded-full border border-white/20 shadow-md ${isSidebarCollapsed ? 'cursor-pointer hover:scale-105 transition-transform' : ''}`}
                 title={isSidebarCollapsed ? "Expand Sidebar" : undefined}
                 onError={(e: any) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }}
               />
               {!isSidebarCollapsed && (
                 <div className="animate-fade-in">
                   <h1 className="font-extrabold text-white text-base md:text-lg tracking-tight uppercase leading-none">
-                    Prep<span className="text-sky-400">Apple</span>
+                    Prep<span className="text-[#1E88E5]">Apple</span>
                   </h1>
                   <span className="text-[10px] text-blue-300 font-extrabold uppercase tracking-wider block mt-1">
                     Admin Control
