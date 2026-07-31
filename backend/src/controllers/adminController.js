@@ -451,3 +451,25 @@ exports.bulkUpdateStudentActiveStatus = async (req, res) => {
     res.status(500).json({ error: 'Failed bulk update' });
   }
 };
+
+// Update student's subcategory access list (multi-access support)
+exports.updateStudentAccess = async (req, res) => {
+  const { id } = req.params;
+  const { subcategory_access } = req.body;
+  if (!Array.isArray(subcategory_access)) {
+    return res.status(400).json({ error: 'subcategory_access must be an array of strings' });
+  }
+  try {
+    const { updateDoc } = require('firebase/firestore');
+    const studentRef = doc(db, 'students', id);
+    const snap = await getDoc(studentRef);
+    if (!snap.exists()) {
+      return res.status(404).json({ error: 'Student not found' });
+    }
+    await updateDoc(studentRef, { subcategory_access });
+    res.json({ success: true, message: 'Student access updated successfully' });
+  } catch (error) {
+    console.error('Error updating student access:', error);
+    res.status(500).json({ error: 'Failed to update student access' });
+  }
+};

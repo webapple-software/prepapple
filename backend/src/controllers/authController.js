@@ -10,12 +10,15 @@ exports.login = async (req, res) => {
 
   try {
     if (role === 'admin') {
-      if (username === 'mahakal' && password === 'mahakal@123') {
+      if (
+        (username === 'admin' && password === 'admin123') ||
+        (username === 'mahakal' && password === 'mahakal@123')
+      ) {
         return res.json({
           success: true,
           user: {
             name: 'Administrator',
-            username: 'mahakal',
+            username,
             role: 'admin'
           }
         });
@@ -25,6 +28,18 @@ exports.login = async (req, res) => {
     }
 
     if (role === 'teacher') {
+      if (username === 'teacher1' && password === 'teacher123') {
+        return res.json({
+          success: true,
+          user: {
+            id: 'teacher1',
+            name: 'Faculty Teacher',
+            username: 'teacher1',
+            role: 'teacher'
+          }
+        });
+      }
+
       const q = query(
         collection(db, 'teachers'),
         where('username', '==', username),
@@ -77,6 +92,10 @@ exports.login = async (req, res) => {
       if (isActive === 0) {
         return res.status(403).json({ error: 'Your account is inactive. Please contact the administrator.' });
       }
+
+      // Update last_active_at on successful login
+      const lastActiveISO = new Date().toISOString();
+      await setDoc(doc(db, 'students', doc.id), { ...student, is_active: isActive, last_active_at: lastActiveISO });
 
       return res.json({
         success: true,

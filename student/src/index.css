@@ -109,3 +109,37 @@ p, span, div, li, input, button, select, textarea {
   user-select: none;
 }
 
+/* Prepapple Brand Theme Utilities (Matched to New Logo Gradient) */
+.bg-prepapple-gradient {
+  background: linear-gradient(135deg, #0052D4 0%, #6B11B0 50%, #FF2A85 100%);
+}
+
+.text-prepapple-gradient {
+  background: linear-gradient(135deg, #0052D4 0%, #6B11B0 50%, #FF2A85 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.bg-prepapple-navy {
+  background-color: #0A1128;
+}
+
+.border-prepapple-gradient {
+  border-image: linear-gradient(135deg, #0052D4, #6B11B0, #FF2A85) 1;
+}
+
+.btn-prepapple {
+  background: linear-gradient(135deg, #0052D4 0%, #6B11B0 50%, #FF2A85 100%);
+  color: #ffffff;
+  font-weight: 800;
+  box-shadow: 0 10px 25px -5px rgba(107, 17, 176, 0.4);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.btn-prepapple:hover {
+  opacity: 0.95;
+  transform: translateY(-2px);
+  box-shadow: 0 15px 30px -5px rgba(255, 42, 133, 0.5);
+}
+
+

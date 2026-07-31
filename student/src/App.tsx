@@ -22,6 +22,7 @@ import Pricing from './pages/landing/Pricing';
 import MockTests from './pages/landing/MockTests';
 import LandingNavbar from './components/landing/Navbar';
 import LandingFooter from './components/landing/Footer';
+import PageLoader from './components/PageLoader';
 
 // Admin Components
 import AdminDashboard from './pages/admin/AdminDashboard';
@@ -81,9 +82,11 @@ function LandingLayout({ children }: { children: React.ReactNode }) {
 
 function AppLayout({ children }: { children: React.ReactNode }) {
   return (
-    <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans">
-      <main className="flex-grow flex flex-col">{children}</main>
-    </div>
+    <PageLoader>
+      <div className="min-h-screen bg-slate-50 text-slate-800 flex flex-col font-sans">
+        <main className="flex-grow flex flex-col">{children}</main>
+      </div>
+    </PageLoader>
   );
 }
 

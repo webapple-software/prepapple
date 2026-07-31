@@ -230,6 +230,21 @@ exports.submitAttempt = async (req, res) => {
       submitted_at: new Date().toISOString()
     });
 
+    // Update student's last_active_at timestamp if matching student exists
+    try {
+      const studentQuery = query(collection(db, 'students'), where('name', '==', studentName));
+      const sSnap = await getDocs(studentQuery);
+      if (!sSnap.empty) {
+        const sDoc = sSnap.docs[0];
+        await setDoc(doc(db, 'students', sDoc.id), {
+          ...sDoc.data(),
+          last_active_at: new Date().toISOString()
+        });
+      }
+    } catch (e) {
+      console.error('Non-critical: Failed to update student last_active_at', e);
+    }
+
     res.status(201).json({
       message: 'Attempt submitted successfully',
       attemptId: attemptId,

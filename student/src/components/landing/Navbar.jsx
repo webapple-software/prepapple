@@ -13,19 +13,11 @@ const Navbar = () => {
           {/* Logo */}
           <Link to="/" className="flex items-center gap-3">
             <img 
-              src="/assets/logo-prepapple.png" 
-              alt="PrepApple Logo" 
-              className="h-11 sm:h-12 w-11 sm:w-12 object-cover rounded-full mix-blend-multiply border border-slate-200/50 shadow-xs" 
-              onError={(e) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }} 
+              src="/assets/prepapple-logo.png" 
+              alt="Prepapple Logo" 
+              className="h-11 sm:h-12 w-auto object-contain transition-transform hover:scale-102" 
+              onError={(e) => { e.target.onerror = null; e.target.src = "/assets/logo-prepapple.png"; }} 
             />
-            <div className="flex flex-col">
-              <span className="font-heading font-extrabold text-xl sm:text-2xl text-[#0B1F4D] leading-none">
-                Prep<span className="text-[#1E88E5]">Apple</span>
-              </span>
-              <span className="text-[9px] sm:text-[10px] text-slate-500 font-bold uppercase tracking-wider mt-0.5">
-                Practice Today. Excel Tomorrow.
-              </span>
-            </div>
           </Link>
           
           {/* Desktop Nav Links */}
@@ -52,7 +44,7 @@ const Navbar = () => {
               href="https://forms.gle/ML2urJTy75xXFXK18" 
               target="_blank" 
               rel="noopener noreferrer" 
-              className="bg-[#1E88E5] hover:bg-blue-600 text-white font-extrabold text-xs py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl transition-all shadow-[0_4px_14px_rgba(30,136,229,0.35)] hover:-translate-y-0.5 uppercase tracking-wider flex items-center justify-center cursor-pointer"
+              className="bg-gradient-to-r from-[#0052D4] via-[#6B11B0] to-[#FF2A85] hover:opacity-95 text-white font-extrabold text-xs py-2.5 sm:py-3 px-4 sm:px-6 rounded-xl transition-all shadow-[0_4px_14px_rgba(107,17,176,0.35)] hover:-translate-y-0.5 uppercase tracking-wider flex items-center justify-center cursor-pointer"
             >
               Subscribe ₹49
             </a>

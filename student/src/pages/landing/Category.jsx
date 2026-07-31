@@ -152,7 +152,7 @@ const Category = () => {
               
               {/* Only the first test is free, the rest are locked */}
               {(test.is_free === 1 || index === 0) ? (
-                <Link to="/login" className="btn-primary py-3 px-8 whitespace-nowrap text-center font-bold">
+                <Link to="/login" className="bg-gradient-to-r from-[#0052D4] via-[#6B11B0] to-[#FF2A85] text-white py-3 px-8 rounded-xl font-extrabold text-sm whitespace-nowrap text-center shadow-md hover:opacity-95 uppercase tracking-wider">
                   Start Free Test
                 </Link>
               ) : (

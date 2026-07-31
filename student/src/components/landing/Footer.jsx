@@ -11,10 +11,12 @@ const Footer = () => {
           {/* Column 1: Brand */}
           <div className="col-span-1 md:col-span-1">
             <Link to="/" className="flex items-center gap-3 mb-6">
-              <img src="/assets/logo-prepapple.png" alt="PrepApple Logo" className="h-14 w-auto object-contain rounded-2xl mix-blend-multiply" onError={(e) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }} />
-              <span className="font-heading font-extrabold text-3xl tracking-tight text-[#0B1F4D]">
-                Prep<span className="text-[#1E88E5]">Apple</span>
-              </span>
+              <img 
+                src="/assets/prepapple-logo.png" 
+                alt="Prepapple Logo" 
+                className="h-12 sm:h-14 w-auto object-contain" 
+                onError={(e) => { e.target.onerror = null; e.target.src = "/assets/logo-prepapple.png"; }} 
+              />
             </Link>
             <p className="text-slate-600 font-medium mb-2 text-sm">PrepApple stands for Exam Excellence.</p>
             <p className="text-slate-500 text-sm mb-6">Made with Love ❤️</p>

@@ -539,4 +539,180 @@ router.put('/questions/:id/assign-test', async (req, res) => {
   }
 });
 
+// POST /import-questions/bulk-chunk
+// Upload 500+ / 1000+ questions Excel sheet, parse, and auto-chunk into 30-question test sets!
+router.post('/import-questions/bulk-chunk', upload.single('file'), async (req, res) => {
+  if (!req.file) {
+    return res.status(400).json({ success: false, message: 'No file uploaded' });
+  }
+
+  const category = (req.body.category || 'JEE').toUpperCase();
+  const questionsPerTest = parseInt(req.body.questionsPerTest, 10) || 30;
+  const isFree = req.body.isFree === '0' || req.body.isFree === 0 ? 0 : 1;
+
+  try {
+    const workbook = xlsx.read(req.file.buffer, { type: 'buffer' });
+    const sheetName = workbook.SheetNames[0];
+    const sheet = workbook.Sheets[sheetName];
+    const rows = xlsx.utils.sheet_to_json(sheet, { header: 1 });
+
+    if (rows.length < 3) {
+      return res.status(400).json({
+        success: false,
+        message: 'Excel file is empty or does not have enough rows.'
+      });
+    }
+
+    const headerRow = rows[0] || [];
+    const normalizedHeaders = headerRow.map(h => (h || '').toString().trim().toLowerCase().replace(/[\s_-]/g, ''));
+
+    const fieldIndices = {
+      exam: normalizedHeaders.indexOf('exam'),
+      subject: normalizedHeaders.indexOf('subject'),
+      chapter: normalizedHeaders.indexOf('chapter'),
+      question_text: normalizedHeaders.findIndex(h => h === 'questiontext' || h === 'question'),
+      option_a: normalizedHeaders.findIndex(h => h === 'optiona' || h === 'a'),
+      option_b: normalizedHeaders.findIndex(h => h === 'optionb' || h === 'b'),
+      option_c: normalizedHeaders.findIndex(h => h === 'optionc' || h === 'c'),
+      option_d: normalizedHeaders.findIndex(h => h === 'optiond' || h === 'd'),
+      correct_option: normalizedHeaders.findIndex(h => h === 'correctoption' || h === 'correct' || h === 'correctans' || h === 'correctanswer'),
+      difficulty: normalizedHeaders.indexOf('difficulty'),
+      year: normalizedHeaders.indexOf('year'),
+      explanation: normalizedHeaders.indexOf('explanation')
+    };
+
+    const getRowValue = (row, field) => {
+      const idx = fieldIndices[field];
+      if (idx !== undefined && idx !== -1) return row[idx];
+      const defaults = {
+        exam: 0, subject: 1, chapter: 2, question_text: 3,
+        option_a: 4, option_b: 5, option_c: 6, option_d: 7,
+        correct_option: 8, difficulty: 9, year: 10, explanation: 11
+      };
+      return row[defaults[field]];
+    };
+
+    const parsedQuestions = [];
+
+    for (let i = 2; i < rows.length; i++) {
+      const row = rows[i];
+      if (!row || row.length === 0) continue;
+      const hasContent = row.some(cell => cell !== null && cell !== undefined && cell.toString().trim() !== '');
+      if (!hasContent) continue;
+
+      const examRow = (getRowValue(row, 'exam') || category).toString().trim();
+      const subject = (getRowValue(row, 'subject') || 'Physics').toString().trim();
+      const chapter = (getRowValue(row, 'chapter') || 'General Practice').toString().trim();
+      const question_text = (getRowValue(row, 'question_text') || '').toString().trim();
+      const option_a = (getRowValue(row, 'option_a') || '').toString().trim();
+      const option_b = (getRowValue(row, 'option_b') || '').toString().trim();
+      const option_c = (getRowValue(row, 'option_c') || '').toString().trim();
+      const option_d = (getRowValue(row, 'option_d') || '').toString().trim();
+      const correct_option_raw = (getRowValue(row, 'correct_option') || '').toString().trim().toLowerCase();
+      const difficulty = (getRowValue(row, 'difficulty') || 'medium').toString().trim().toLowerCase();
+      const yearVal = getRowValue(row, 'year');
+      const year = yearVal ? parseInt(yearVal, 10) : null;
+      const explanation = (getRowValue(row, 'explanation') || '').toString().trim();
+
+      if (!question_text || !option_a || !option_b || !option_c || !option_d || !['a', 'b', 'c', 'd'].includes(correct_option_raw)) {
+        continue;
+      }
+
+      parsedQuestions.push({
+        exam: examRow || category,
+        subject,
+        chapter,
+        question_text,
+        option_a, option_b, option_c, option_d,
+        correct_option: correct_option_raw,
+        difficulty, year, explanation
+      });
+    }
+
+    if (parsedQuestions.length === 0) {
+      return res.status(400).json({ success: false, message: 'No valid questions found in Excel file.' });
+    }
+
+    // Split into chunks of questionsPerTest (e.g. 30 Qs per test)
+    const chunks = [];
+    for (let i = 0; i < parsedQuestions.length; i += questionsPerTest) {
+      chunks.push(parsedQuestions.slice(i, i + questionsPerTest));
+    }
+
+    const createdTestSets = [];
+
+    for (let cIdx = 0; cIdx < chunks.length; cIdx++) {
+      const chunk = chunks[cIdx];
+      const testId = (Date.now() + Math.floor(Math.random() * 10000) + cIdx).toString();
+      const testName = `Practice Quiz Set #${cIdx + 1} - ${category}`;
+
+      // Save test document
+      await setDoc(doc(db, 'tests', testId), {
+        name: testName,
+        duration: 30,
+        is_published: 1,
+        marks: 4.0,
+        negative_marks: -1.0,
+        randomize_questions: 1,
+        category: category,
+        is_free: isFree,
+        test_type: 'practice',
+        created_at: new Date().toISOString()
+      });
+
+      // Batch insert questions linked to this testId
+      const batch = writeBatch(db);
+      chunk.forEach((q) => {
+        const correctIndexMap = { a: 0, b: 1, c: 2, d: 3 };
+        const correctIndex = correctIndexMap[q.correct_option];
+        const newQRef = doc(collection(db, 'questions'));
+        batch.set(newQRef, {
+          test_id: testId,
+          exam: q.exam,
+          subject: q.subject,
+          chapter: q.chapter,
+          question_text: q.question_text,
+          option_a: q.option_a,
+          option_b: q.option_b,
+          option_c: q.option_c,
+          option_d: q.option_d,
+          correct_option: q.correct_option,
+          difficulty: q.difficulty,
+          year: q.year,
+          explanation: q.explanation,
+          options: [q.option_a, q.option_b, q.option_c, q.option_d],
+          correct_answer: [correctIndex],
+          question_type: 'SINGLE',
+          section: q.subject,
+          marks: 4.0,
+          negative_marks: -1.0,
+          created_at: new Date().toISOString()
+        });
+      });
+
+      await batch.commit();
+
+      createdTestSets.push({
+        testId,
+        name: testName,
+        category,
+        questionCount: chunk.length,
+        isFree
+      });
+    }
+
+    return res.status(200).json({
+      success: true,
+      totalQuestions: parsedQuestions.length,
+      createdTestsCount: createdTestSets.length,
+      createdTests: createdTestSets,
+      message: `Successfully imported ${parsedQuestions.length} questions and created ${createdTestSets.length} auto-generated 30-question quiz sets!`
+    });
+
+  } catch (error) {
+    console.error('Error in bulk-chunk import:', error);
+    return res.status(500).json({ success: false, message: 'Failed to process bulk Excel chunking: ' + error.message });
+  }
+});
+
 module.exports = router;

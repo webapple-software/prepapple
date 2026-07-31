@@ -276,20 +276,16 @@ export default function StudentPortal() {
         {/* Brand Header & Toggle */}
         <div className={`p-4 border-b border-white/10 flex items-center justify-between gap-3 ${isSidebarCollapsed ? 'justify-center' : ''}`}>
           <div className="flex items-center gap-3">
-            <img 
-              src="/assets/logo-prepapple.png" 
-              alt="PrepApple Logo" 
-              onClick={() => isSidebarCollapsed && setIsSidebarCollapsed(false)}
-              className={`h-10 w-10 object-cover flex-shrink-0 rounded-full border border-white/20 shadow-md ${isSidebarCollapsed ? 'cursor-pointer hover:scale-105 transition-transform' : ''}`}
-              title={isSidebarCollapsed ? "Expand Sidebar" : undefined}
-              onError={(e: any) => { e.target.onerror = null; e.target.src = "/assets/logo.jpeg"; }}
-            />
-            {!isSidebarCollapsed && (
-              <div className="animate-fade-in">
-                <h2 className="font-black text-sm tracking-widest text-white uppercase leading-none">Prep<span className="text-[#1E88E5]">Apple</span></h2>
-                <span className="text-[9px] font-black text-emerald-400 uppercase tracking-widest block mt-1">CBT Prep Portal</span>
-              </div>
-            )}
+            <div className="bg-white px-3 py-1.5 rounded-xl shadow-md border border-white/20 flex items-center justify-center">
+              <img 
+                src="/assets/prepapple-logo.png" 
+                alt="Prepapple Logo" 
+                onClick={() => isSidebarCollapsed && setIsSidebarCollapsed(false)}
+                className={`h-7 sm:h-8 w-auto object-contain flex-shrink-0 ${isSidebarCollapsed ? 'cursor-pointer hover:scale-105 transition-transform' : ''}`}
+                title={isSidebarCollapsed ? "Expand Sidebar" : undefined}
+                onError={(e: any) => { e.target.onerror = null; e.target.src = "/assets/logo-prepapple.png"; }}
+              />
+            </div>
           </div>
           
           {/* Toggle Trigger */}
@@ -319,13 +315,13 @@ export default function StudentPortal() {
               isSidebarCollapsed ? 'justify-center w-12 h-12 mx-auto px-0 py-0' : 'w-full gap-3 px-4 py-3'
             } ${
               activeTab === 'dashboard'
-                ? 'bg-blue-600 text-white shadow shadow-blue-500/10'
+                ? 'bg-gradient-to-r from-[#0052D4] via-[#6B11B0] to-[#FF2A85] text-white shadow-md'
                 : 'text-slate-300 hover:bg-[#1a3a60] hover:text-white'
             }`}
             title={isSidebarCollapsed ? "Dashboard" : undefined}
           >
-            <LayoutDashboard className="w-4.5 h-4.5" />
-            {!isSidebarCollapsed && <span className="animate-fade-in">Dashboard</span>}
+            <LayoutDashboard className="w-4.5 h-4.5 flex-shrink-0" />
+            {!isSidebarCollapsed && <span className="animate-fade-in whitespace-nowrap">Dashboard</span>}
           </button>
 
           <button
@@ -334,13 +330,13 @@ export default function StudentPortal() {
               isSidebarCollapsed ? 'justify-center w-12 h-12 mx-auto px-0 py-0' : 'w-full gap-3 px-4 py-3'
             } ${
               activeTab === 'quizzes'
-                ? 'bg-blue-600 text-white shadow shadow-blue-500/10'
+                ? 'bg-gradient-to-r from-[#0052D4] via-[#6B11B0] to-[#FF2A85] text-white shadow-md'
                 : 'text-slate-300 hover:bg-[#1a3a60] hover:text-white'
             }`}
             title={isSidebarCollapsed ? "Practice Quizzes" : undefined}
           >
-            <BookOpen className="w-4.5 h-4.5" />
-            {!isSidebarCollapsed && <span className="animate-fade-in">Practice Quizzes</span>}
+            <BookOpen className="w-4.5 h-4.5 flex-shrink-0" />
+            {!isSidebarCollapsed && <span className="animate-fade-in whitespace-nowrap">Practice Quizzes</span>}
           </button>
 
           <button
@@ -349,13 +345,13 @@ export default function StudentPortal() {
               isSidebarCollapsed ? 'justify-center w-12 h-12 mx-auto px-0 py-0' : 'w-full gap-3 px-4 py-3'
             } ${
               activeTab === 'mocks'
-                ? 'bg-blue-600 text-white shadow shadow-blue-500/10'
+                ? 'bg-gradient-to-r from-[#0052D4] via-[#6B11B0] to-[#FF2A85] text-white shadow-md'
                 : 'text-slate-300 hover:bg-[#1a3a60] hover:text-white'
             }`}
             title={isSidebarCollapsed ? "Mock Test Series" : undefined}
           >
-            <Activity className="w-4.5 h-4.5" />
-            {!isSidebarCollapsed && <span className="animate-fade-in">Mock Test Series</span>}
+            <Activity className="w-4.5 h-4.5 flex-shrink-0" />
+            {!isSidebarCollapsed && <span className="animate-fade-in whitespace-nowrap">Mock Test Series</span>}
           </button>
 
           <button
@@ -364,13 +360,13 @@ export default function StudentPortal() {
               isSidebarCollapsed ? 'justify-center w-12 h-12 mx-auto px-0 py-0' : 'w-full gap-3 px-4 py-3'
             } ${
               activeTab === 'history'
-                ? 'bg-blue-600 text-white shadow shadow-blue-500/10'
+                ? 'bg-gradient-to-r from-[#0052D4] via-[#6B11B0] to-[#FF2A85] text-white shadow-md'
                 : 'text-slate-300 hover:bg-[#1a3a60] hover:text-white'
             }`}
             title={isSidebarCollapsed ? "Practice History" : undefined}
           >
-            <FileSpreadsheet className="w-4.5 h-4.5" />
-            {!isSidebarCollapsed && <span className="animate-fade-in">Practice History</span>}
+            <FileSpreadsheet className="w-4.5 h-4.5 flex-shrink-0" />
+            {!isSidebarCollapsed && <span className="animate-fade-in whitespace-nowrap">Practice History</span>}
           </button>
 
           <button
@@ -379,15 +375,15 @@ export default function StudentPortal() {
               isSidebarCollapsed ? 'justify-center w-12 h-12 mx-auto px-0 py-0' : 'w-full gap-3 px-4 py-3'
             } ${
               activeTab === 'analysis'
-                ? 'bg-blue-600 text-white shadow shadow-blue-500/10'
+                ? 'bg-gradient-to-r from-[#0052D4] via-[#6B11B0] to-[#FF2A85] text-white shadow-md'
                 : 'text-slate-300 hover:bg-[#1a3a60] hover:text-white'
             }`}
             title={isSidebarCollapsed ? "Mistakes & Analytics" : undefined}
           >
-            <Target className="w-4.5 h-4.5 text-amber-400" />
-            {!isSidebarCollapsed && <span className="animate-fade-in flex items-center justify-between flex-1">
-              <span>Mistakes & Analytics</span>
-              <span className="bg-rose-500 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-full uppercase">AI</span>
+            <Target className="w-4.5 h-4.5 text-amber-400 flex-shrink-0" />
+            {!isSidebarCollapsed && <span className="animate-fade-in flex items-center justify-between flex-1 gap-2 whitespace-nowrap">
+              <span className="whitespace-nowrap">Mistakes & Analytics</span>
+              <span className="bg-rose-500 text-white text-[9px] font-extrabold px-1.5 py-0.5 rounded-full uppercase flex-shrink-0">AI</span>
             </span>}
           </button>
 
@@ -397,13 +393,13 @@ export default function StudentPortal() {
               isSidebarCollapsed ? 'justify-center w-12 h-12 mx-auto px-0 py-0' : 'w-full gap-3 px-4 py-3'
             } ${
               activeTab === 'subscription'
-                ? 'bg-blue-600 text-white shadow shadow-blue-500/10'
+                ? 'bg-gradient-to-r from-[#0052D4] via-[#6B11B0] to-[#FF2A85] text-white shadow-md'
                 : 'text-slate-300 hover:bg-[#1a3a60] hover:text-white'
             }`}
             title={isSidebarCollapsed ? "My Subscription" : undefined}
           >
-            <CreditCard className="w-4.5 h-4.5" />
-            {!isSidebarCollapsed && <span className="animate-fade-in">My Subscription</span>}
+            <CreditCard className="w-4.5 h-4.5 flex-shrink-0" />
+            {!isSidebarCollapsed && <span className="animate-fade-in whitespace-nowrap">My Subscription</span>}
           </button>
         </div>
 
@@ -832,7 +828,7 @@ export default function StudentPortal() {
                 <div className="mb-6">
                   <h2 className="text-2xl font-black text-slate-800 uppercase tracking-tight flex items-center gap-2">
                     <span>{selectedCategory} Test Series</span>
-                    <span className="bg-blue-600 text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider animate-pulse">
+                    <span className="bg-gradient-to-r from-[#0052D4] via-[#6B11B0] to-[#FF2A85] text-white text-[10px] font-black px-2.5 py-0.5 rounded-full uppercase tracking-wider shadow-sm animate-pulse">
                       Full Mocks
                     </span>
                   </h2>
@@ -847,7 +843,7 @@ export default function StudentPortal() {
                   <div className="relative flex items-center w-full px-2">
                     <button
                       onClick={() => scrollContainer(mockScrollRef, 'left')}
-                      className="absolute -left-4 z-10 w-9 h-9 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105"
+                      className="absolute -left-4 z-10 w-9 h-9 bg-gradient-to-r from-[#0052D4] via-[#6B11B0] to-[#FF2A85] text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105"
                       title="Scroll Left"
                     >
                       <ChevronLeft className="w-5 h-5 stroke-[3]" />
@@ -928,7 +924,7 @@ export default function StudentPortal() {
 
                     <button
                       onClick={() => scrollContainer(mockScrollRef, 'right')}
-                      className="absolute -right-4 z-10 w-9 h-9 bg-blue-600 hover:bg-blue-700 text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105"
+                      className="absolute -right-4 z-10 w-9 h-9 bg-gradient-to-r from-[#0052D4] via-[#6B11B0] to-[#FF2A85] text-white rounded-full flex items-center justify-center transition-all cursor-pointer shadow-md hover:scale-105"
                       title="Scroll Right"
                     >
                       <ChevronRight className="w-5 h-5 stroke-[3]" />

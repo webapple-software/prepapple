@@ -73,10 +73,11 @@ export default function TestAttempt() {
   // Active section tab index
   const [activeSectionIndex, setActiveSectionIndex] = useState(0);
 
-  // Timer: remaining time in seconds
+  // Timer & Submission Refs
   const [timeLeft, setTimeLeft] = useState(0);
   const timerRef = useRef<any>(null);
   const timeSpentRef = useRef<number>(0);
+  const isSubmittedRef = useRef<boolean>(false);
 
   useEffect(() => {
     // Check if user is logged in
@@ -118,12 +119,67 @@ export default function TestAttempt() {
   const fetchTestDetails = async () => {
     try {
       setLoading(true);
+
+      // Check if test was already started & user refreshed page
+      const startedKey = `active_test_started_${testId}`;
+      const draftKey = `active_test_draft_${testId}`;
+      const isAlreadyStarted = localStorage.getItem(startedKey);
+      
+      if (isAlreadyStarted) {
+        // Page was refreshed during test! Auto-submit immediately with saved draft or current state
+        const savedDraftRaw = localStorage.getItem(draftKey);
+        let savedAnswers = {};
+        let savedTimeTaken = 0;
+        if (savedDraftRaw) {
+          try {
+            const parsed = JSON.parse(savedDraftRaw);
+            savedAnswers = parsed.answers || {};
+            savedTimeTaken = parsed.timeTaken || 0;
+          } catch (e) {}
+        }
+        
+        // Auto submit directly to API
+        const response = await fetch('/api/attempts/submit', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            testId,
+            studentName,
+            timeTaken: savedTimeTaken,
+            answers: savedAnswers,
+            questionOrder: []
+          }),
+        });
+
+        localStorage.removeItem(startedKey);
+        localStorage.removeItem(draftKey);
+
+        if (response.ok) {
+          const result = await response.json();
+          Swal.fire({
+            title: "Test Auto-Submitted!",
+            text: "Page refresh or reload was detected during the test attempt. Your test has been submitted automatically.",
+            icon: "warning",
+            confirmButtonText: "View Results",
+            confirmButtonColor: "#1E88E5",
+            allowOutsideClick: false,
+            allowEscapeKey: false
+          }).then(() => {
+            navigate(`/results/${result.attemptId}`);
+          });
+          return;
+        }
+      }
+
       const response = await fetch(`/api/tests/${testId}/start`);
       if (!response.ok) {
         const data = await response.json();
         throw new Error(data.error || 'Failed to start test');
       }
       const data: TestDetails = await response.json();
+
+      // Mark test as started in localStorage so any page refresh triggers auto-submit
+      localStorage.setItem(startedKey, 'true');
 
       // Sort questions so they are contiguous: Physics -> Chemistry -> Mathematics -> Biology -> others
       const sortedQuestions = [...data.questions].sort((a: any, b: any) => {
@@ -159,6 +215,66 @@ export default function TestAttempt() {
       setLoading(false);
     }
   };
+
+  // Anti-Refresh & Draft Sync Effect
+  useEffect(() => {
+    if (!test || isSubmittedRef.current) return;
+
+    // Save active draft to localStorage
+    const draftKey = `active_test_draft_${test.id}`;
+    localStorage.setItem(draftKey, JSON.stringify({
+      testId: test.id,
+      answers,
+      timeTaken: timeSpentRef.current,
+      timestamp: Date.now()
+    }));
+
+    // Prevent F5 & Ctrl+R keyboard refresh
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (
+        e.key === 'F5' ||
+        (e.ctrlKey && (e.key === 'r' || e.key === 'R')) ||
+        (e.metaKey && (e.key === 'r' || e.key === 'R'))
+      ) {
+        e.preventDefault();
+        Swal.fire({
+          title: 'Refresh Prohibited!',
+          text: 'Page refresh is blocked during tests. Reloading will automatically submit your test.',
+          icon: 'warning',
+          confirmButtonColor: '#ef4444'
+        });
+      }
+    };
+
+    // Prompt user on beforeunload & send beacon if tab closes
+    const handleBeforeUnload = (e: BeforeUnloadEvent) => {
+      if (!isSubmittedRef.current) {
+        try {
+          const payload = JSON.stringify({
+            testId: test.id,
+            studentName,
+            timeTaken: timeSpentRef.current,
+            answers,
+            questionOrder: test.questions.map((q: any) => q.id)
+          });
+          const blob = new Blob([payload], { type: 'application/json' });
+          navigator.sendBeacon('/api/attempts/submit', blob);
+        } catch (err) {}
+
+        e.preventDefault();
+        e.returnValue = 'Refreshing or leaving this page will automatically submit your test!';
+        return e.returnValue;
+      }
+    };
+
+    window.addEventListener('keydown', handleKeyDown);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('keydown', handleKeyDown);
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [test, answers, studentName]);
 
   const startTimer = () => {
     timerRef.current = setInterval(() => {
@@ -411,7 +527,7 @@ export default function TestAttempt() {
   };
 
   const handleSubmit = async (isAuto = false) => {
-    if (!test) return;
+    if (!test || isSubmittedRef.current) return;
 
     if (!isAuto) {
       const confirmSubmit = await Swal.fire({
@@ -426,8 +542,16 @@ export default function TestAttempt() {
       if (!confirmSubmit.isConfirmed) return;
     }
 
+    isSubmittedRef.current = true;
+
     // Stop timer
     if (timerRef.current) clearInterval(timerRef.current);
+
+    // Clear active test keys
+    try {
+      localStorage.removeItem(`active_test_started_${test.id}`);
+      localStorage.removeItem(`active_test_draft_${test.id}`);
+    } catch (e) {}
 
     try {
       setLoading(true);
@@ -790,45 +914,48 @@ export default function TestAttempt() {
               </div>
             </div>
 
-            {/* Question Palette divided by sections present in the test */}
+            {/* Question Palette showing only the active subject section */}
             <div className="p-4">
               <h3 className="text-[11px] font-black text-slate-400 uppercase tracking-widest mb-4">Question Palette</h3>
               
-              {sectionsInfo.map((sec) => (
-                <div key={sec.name} className="mb-5">
-                  <h4 className="text-xs font-extrabold text-[#0f294a] bg-slate-100 border-l-4 border-[#0f294a] px-3 py-1.5 rounded-r uppercase tracking-wider mb-3 flex items-center justify-between">
-                    <span>{sec.name}</span>
-                    <span className="text-[10px] font-bold text-slate-500 bg-white border border-slate-200 px-1.5 py-0.5 rounded">
-                      {sec.count} Qs
-                    </span>
-                  </h4>
-                  <div className="grid grid-cols-5 gap-2 max-h-56 overflow-y-auto pr-1">
-                    {test.questions.slice(sec.startIndex, sec.endIndex).map((q, idx) => {
-                      const absoluteIdx = sec.startIndex + idx;
-                      const status = getQStatus(q.id);
-                      let shapeClass = 'shape-not-visited';
-                      if (status === 'NOT_ANSWERED') shapeClass = 'shape-not-answered';
-                      else if (status === 'ANSWERED') shapeClass = 'shape-answered';
-                      else if (status === 'MARKED') shapeClass = 'shape-marked';
-                      else if (status === 'MARKED_ANSWERED') shapeClass = 'shape-marked-answered';
+              {sectionsInfo[activeSectionIndex] && (() => {
+                const sec = sectionsInfo[activeSectionIndex];
+                return (
+                  <div key={sec.name} className="mb-2">
+                    <h4 className="text-xs font-extrabold text-[#0f294a] bg-slate-100 border-l-4 border-[#0f294a] px-3 py-1.5 rounded-r uppercase tracking-wider mb-3 flex items-center justify-between">
+                      <span>{sec.name}</span>
+                      <span className="text-[10px] font-bold text-slate-500 bg-white border border-slate-200 px-1.5 py-0.5 rounded">
+                        {sec.count} Qs
+                      </span>
+                    </h4>
+                    <div className="grid grid-cols-5 gap-2 max-h-96 overflow-y-auto pr-1">
+                      {test.questions.slice(sec.startIndex, sec.endIndex).map((q, idx) => {
+                        const absoluteIdx = sec.startIndex + idx;
+                        const status = getQStatus(q.id);
+                        let shapeClass = 'shape-not-visited';
+                        if (status === 'NOT_ANSWERED') shapeClass = 'shape-not-answered';
+                        else if (status === 'ANSWERED') shapeClass = 'shape-answered';
+                        else if (status === 'MARKED') shapeClass = 'shape-marked';
+                        else if (status === 'MARKED_ANSWERED') shapeClass = 'shape-marked-answered';
 
-                      const isActive = absoluteIdx === currentIndex;
+                        const isActive = absoluteIdx === currentIndex;
 
-                      return (
-                        <button
-                          key={q.id}
-                          onClick={() => goToQuestion(absoluteIdx)}
-                          className={`palette-btn ${shapeClass} ${
-                            isActive ? 'ring-2 ring-blue-600 ring-offset-2 scale-105 z-10' : ''
-                          }`}
-                        >
-                          {idx + 1}
-                        </button>
-                      );
-                    })}
+                        return (
+                          <button
+                            key={q.id}
+                            onClick={() => goToQuestion(absoluteIdx)}
+                            className={`palette-btn ${shapeClass} ${
+                              isActive ? 'ring-2 ring-blue-600 ring-offset-2 scale-105 z-10' : ''
+                            }`}
+                          >
+                            {idx + 1}
+                          </button>
+                        );
+                      })}
+                    </div>
                   </div>
-                </div>
-              ))}
+                );
+              })()}
             </div>
           </div>
 

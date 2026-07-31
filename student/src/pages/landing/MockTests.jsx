@@ -173,7 +173,7 @@ const MockTests = () => {
           </div>
 
           <h1 className="text-4xl sm:text-5xl font-black text-[#0B1F4D] tracking-tight">
-            Explore All Mock Test Series
+            Explore All <span className="bg-gradient-to-r from-[#0052D4] via-[#6B11B0] to-[#FF2A85] bg-clip-text text-transparent">Mock Test Series</span>
           </h1>
 
           <p className="text-base sm:text-lg text-slate-600 font-medium leading-relaxed">
@@ -193,7 +193,7 @@ const MockTests = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search mock test series (e.g. JEE, SSC CGL)..." 
-                className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold outline-none focus:border-[#1E88E5] focus:ring-2 focus:ring-blue-100 transition-all text-slate-800"
+                className="w-full pl-11 pr-4 py-3 bg-slate-50 border border-slate-200 rounded-2xl text-sm font-semibold outline-none focus:border-[#6B11B0] focus:ring-2 focus:ring-purple-100 transition-all text-slate-800"
               />
             </div>
 
@@ -222,7 +222,7 @@ const MockTests = () => {
                 type="button"
                 onClick={() => setFilterType('pro')}
                 className={`px-4 py-2.5 rounded-xl font-extrabold text-xs uppercase tracking-wider transition-all cursor-pointer flex items-center gap-1.5 ${
-                  filterType === 'pro' ? 'bg-[#1E88E5] text-white shadow-sm' : 'bg-blue-50 text-[#1E88E5] hover:bg-blue-100'
+                  filterType === 'pro' ? 'bg-gradient-to-r from-[#0052D4] to-[#6B11B0] text-white shadow-sm' : 'bg-blue-50 text-[#0052D4] hover:bg-blue-100'
                 }`}
               >
                 <Lock className="w-3.5 h-3.5" />
@@ -241,7 +241,7 @@ const MockTests = () => {
                 onClick={() => setSelectedCategory(cat)}
                 className={`px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all cursor-pointer ${
                   selectedCategory === cat
-                    ? 'bg-[#1E88E5] text-white shadow-md'
+                    ? 'bg-gradient-to-r from-[#0052D4] via-[#6B11B0] to-[#FF2A85] text-white shadow-md'
                     : 'bg-slate-100 text-slate-600 hover:bg-slate-200 hover:text-slate-900'
                 }`}
               >
